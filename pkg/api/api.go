@@ -1,6 +1,7 @@
 package api
 
 import (
+	"cloudflare/pkg/structs"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -9,16 +10,7 @@ import (
 	"os"
 )
 
-type Error struct {
-	Code    int    `json:"code"`
-	Message string `json:"message"`
-}
-type Response struct {
-	Success bool    `json:"success"`
-	Errors  []Error `json:"errors"`
-}
-
-func VerifyToken(input string) (result string) {
+func VerifyToken(input string) (result structs.Response) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", "https://api.cloudflare.com/client/v4/user/tokens/verify", nil)
 	req.Header.Add("Authorization", "Bearer "+input)
@@ -32,10 +24,12 @@ func VerifyToken(input string) (result string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return string(responseData)
+	res := structs.Response{}
+	_ = json.Unmarshal(responseData, &res)
+	return res
 }
 
-func VerifyKeyEmail(email string, key string) (result string) {
+func VerifyKeyEmail(email string, key string) (result structs.Response) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", "https://api.cloudflare.com/client/v4/user", nil)
 	req.Header.Add("X-Auth-Email", email)
@@ -51,13 +45,7 @@ func VerifyKeyEmail(email string, key string) (result string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	var responseObject Response
-	json.Unmarshal(responseData, &responseObject)
-
-	jsonData, err := json.Marshal(responseObject)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	return string(jsonData)
+	res := structs.Response{}
+	_ = json.Unmarshal(responseData, &res)
+	return res
 }

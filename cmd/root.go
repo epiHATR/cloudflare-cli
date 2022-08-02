@@ -5,15 +5,16 @@ Copyright © 2022 Hai.Tran (github.com/epiHATR)
 package cmd
 
 import (
+	"cloudflare/pkg/util"
 	"fmt"
+	"io/ioutil"
+	"log"
 	"os"
 
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
-var version = "0.0.1"
-var cfgFile string
+var version = "0.0.2"
 var isDebug bool = false
 
 // rootCmd represents the base command when called without any subcommands
@@ -61,28 +62,16 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
+	rootCmd.PersistentFlags().BoolVarP(&isDebug, "debug", "d", false, "show debugging information in output windows")
+	rootCmd.PersistentFlags().BoolP("help", "h", false, "show command help for instructions and examples")
 }
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	if cfgFile != "" {
-		// Use config file from the flag.
-		viper.SetConfigFile(cfgFile)
+	if isDebug {
+		log.SetOutput(os.Stdout)
 	} else {
-		// Find home directory.
-		home, err := os.UserHomeDir()
-		cobra.CheckErr(err)
-
-		// Search config in home directory with name ".cloudflare" (without extension).
-		viper.AddConfigPath(home)
-		viper.SetConfigType("yaml")
-		viper.SetConfigName(".cloudflare")
+		log.SetOutput(ioutil.Discard)
 	}
-
-	viper.AutomaticEnv() // read in environment variables that match
-
-	// If a config file is found, read it in.
-	if err := viper.ReadInConfig(); err == nil {
-		fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
-	}
+	util.LoadConfig()
 }
