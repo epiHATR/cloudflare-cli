@@ -1,5 +1,5 @@
 /*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
+Copyright © 2022 Hai.Tran (github.com/epiHATR)
 
 */
 package cmd

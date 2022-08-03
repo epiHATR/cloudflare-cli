@@ -9,7 +9,7 @@ Communicating with Cloudflare API through command line interface
 3. [Development](#developments)
     1. [Setup environment](#setupenvironment)
     2. [Add new sub command](#addsubcommands)
-    3. [Test local function](#testlocal)
+    3. [Incoming features](#incommingfeatures)
     4. [Build with cross-compile options](#build)
 
 ## Introduction <a name="introductions"></a>
@@ -98,7 +98,33 @@ cloudflare version [ --short | -s ]
 
 ### Add sub commands <a name="addsubcommands"></a>
 
-### Test local function <a name="testlocal"></a>
+### Incoming features <a name="incommingfeatures"></a>
+##### Add jmsePath in --query|-q flags
+```bash
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+
+	"github.com/jmespath/go-jmespath"
+)
+
+func main() {
+	var jsondata = []byte(`[{"id":"/subscriptions/c3f3aa63-3fdc-402f-9b03-30fe0a3df3ef/resourceGroups/NetworkWatcherRG","location":"northeurope","managedBy":null,"name":"NetworkWatcherRG","properties":{"provisioningState":"Succeeded"},"tags":null,"type":"Microsoft.Resources/resourceGroups"}]`)
+	var data interface{}
+	err := json.Unmarshal(jsondata, &data)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "sss")
+	}
+	result, err := jmespath.Search("[].id", data)
+	body, _ := json.Marshal(result)
+	fmt.Println(string(body))
+}
+
+```
+##### Add --output|-o flag
 
 ### Build <a name="build"></a>
 
