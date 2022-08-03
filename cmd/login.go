@@ -1,11 +1,12 @@
 /*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
+Copyright © 2022 Hai.Tran (github.com/epiHATR)
 
 */
 package cmd
 
 import (
 	"cloudflare/pkg/api"
+	"cloudflare/pkg/text"
 	"cloudflare/pkg/util"
 	"fmt"
 	"log"
@@ -19,26 +20,11 @@ var cfEmail = ""
 var cfApiKey = ""
 var cfToken = ""
 
-var noCredtialErrorMsg = `Error: no credentials provided, consider using flags or environment variables
-
-Usages:
-	cloudflare login --email <your cloudflare email> --key <your cloudflare api key>
-	cloudflare login --token <your cloudflare api token>
-
-Explore cloudflare-cli commands at https://github.com/epiHATR/cloudflare-cli`
-
-var cmdLongMgs = `This command let you authenticate against Cloudflare REST API and store credential to local file
-	
-Usages
-	cloudflare login --email <your cloudflare email> --key <your cloudflare api key>
-
-Explore cloudflare-cli commands at https://github.com/epiHATR/cloudflare-cli`
-
 // loginCmd represents the login command
 var loginCmd = &cobra.Command{
 	Use:   "login",
 	Short: "login into Cloudflare REST API",
-	Long:  cmdLongMgs,
+	Long:  text.CmdLoginLongText + text.SubCmdHelpText,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		// if token flag provided
@@ -78,7 +64,7 @@ var loginCmd = &cobra.Command{
 					key := viper.GetString("auth.key")
 
 					if email == "" || key == "" {
-						fmt.Fprintln(os.Stderr, noCredtialErrorMsg)
+						fmt.Fprintln(os.Stderr, text.CmdLoginNoCredentialText, text.SubCmdHelpText)
 						os.Exit(1)
 					} else {
 						log.Println("authenticating against using configuration values for auth.email & auth.key")
