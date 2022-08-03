@@ -6,10 +6,10 @@ package cmd
 
 import (
 	"cloudflare/pkg/api"
-	"cloudflare/pkg/color"
 	"cloudflare/pkg/util"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -19,29 +19,36 @@ var cfEmail = ""
 var cfApiKey = ""
 var cfToken = ""
 
+var noCredtialErrorMsg = `Error: no credentials provided, consider using flags or environment variables
+
+Usages:
+	cloudflare login --email <your cloudflare email> --key <your cloudflare api key>
+	cloudflare login --token <your cloudflare api token>
+
+Explore cloudflare-cli commands at https://github.com/epiHATR/cloudflare-cli`
+
+var cmdLongMgs = `This command let you authenticate against Cloudflare REST API and store credential to local file
+	
+Usages
+	cloudflare login --email <your cloudflare email> --key <your cloudflare api key>
+
+Explore cloudflare-cli commands at https://github.com/epiHATR/cloudflare-cli`
+
 // loginCmd represents the login command
 var loginCmd = &cobra.Command{
 	Use:   "login",
 	Short: "login into Cloudflare REST API",
-	Long: `This command let you authenticate against Cloudflare REST API and store credential to local file
-	
-Examples:
-
-cloudflare login --email <youremail@example.com> --key <your valid api key>
-cloudflare login -t <your valid Api Token>
-
-export CF_AUTH_TOKEN=<your valid Cloudflare API token>
-cloudflare login`,
+	Long:  cmdLongMgs,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		// if token flag provided
 		if cfToken != "" {
-			log.Println(color.Green, "API Token was provided, ignored --email|-e and --key|-k", color.Reset)
+			log.Println("API Token was provided, ignored --email|-e and --key|-k")
 			res := api.VerifyToken(cfToken)
 			if res.Success {
 				_ = util.SetToken(cfToken)
 			} else {
-				fmt.Println(color.Red, res.Errors[0].Message, color.Reset)
+				fmt.Fprintln(os.Stderr, res.Errors[0].Message)
 			}
 		} else {
 			if cfEmail != "" && cfApiKey != "" {
@@ -50,7 +57,7 @@ cloudflare login`,
 				if res.Success {
 					_ = util.SetEmailKey(cfEmail, cfApiKey)
 				} else {
-					fmt.Println(color.Red, res.Errors[0].Message, color.Reset)
+					fmt.Fprintln(os.Stderr, res.Errors[0].Message)
 				}
 			} else if cfEmail == "" && cfApiKey == "" {
 				// if both of them was not provided
@@ -64,29 +71,28 @@ cloudflare login`,
 					if res.Success {
 						_ = util.SetToken(token)
 					} else {
-						fmt.Println(color.Red, res.Errors[0].Message, color.Reset)
+						fmt.Fprintln(os.Stderr, res.Errors[0].Message)
 					}
 				} else {
 					email := viper.GetString("auth.email")
 					key := viper.GetString("auth.key")
 
 					if email == "" || key == "" {
-						fmt.Println(color.Red, "no credentials provided, consider using flags or environment variables", color.Reset)
-						fmt.Println("\n\r")
-						fmt.Println(color.Green, "Examples", color.Reset)
-						fmt.Println(color.Green, "cloudflare login --email user@example.com --key asdf121n10dbm390d0@@123mdk11j133d132", color.Reset)
+						fmt.Fprintln(os.Stderr, noCredtialErrorMsg)
+						os.Exit(1)
 					} else {
-						log.Println("authenticating against using environment variables for CF_AUTH_EMAIL and CF_AUTH_KEY")
+						log.Println("authenticating against using configuration values for auth.email & auth.key")
 						res := api.VerifyKeyEmail(email, key)
 						if res.Success {
 							_ = util.SetEmailKey(email, key)
 						} else {
-							fmt.Println(color.Red, res.Errors[0].Message, color.Reset)
+							fmt.Fprintln(os.Stderr, res.Errors[0].Message)
 						}
 					}
 				}
 			} else {
-				fmt.Println(color.Red, "both of --email|-e and --key|-k are required to authenticate with Cloudflare API", color.Reset)
+				fmt.Fprintln(os.Stderr, "both of --email|-e and --key|-k are required to authenticate with Cloudflare API")
+				os.Exit(1)
 			}
 		}
 	},

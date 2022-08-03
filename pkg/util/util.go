@@ -59,6 +59,8 @@ func LoadConfig() (config *structs.Config) {
 func SetToken(token string) (res bool) {
 	result := false
 	viper.Set("auth.token", token)
+	viper.Set("auth.email", "")
+	viper.Set("auth.key", "")
 	viper.WriteConfig()
 	log.Println("saved token", "****************", "to .cloudflare configuration file at ", viper.ConfigFileUsed())
 	return result
@@ -68,6 +70,7 @@ func SetEmailKey(email string, key string) (res bool) {
 	result := false
 	viper.Set("auth.email", email)
 	viper.Set("auth.key", key)
+	viper.Set("auth.token", "")
 	viper.WriteConfig()
 	log.Println("saved email & key to .cloudflare configuration file at ", viper.ConfigFileUsed())
 	return result

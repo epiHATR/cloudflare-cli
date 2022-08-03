@@ -49,6 +49,7 @@ Flags:
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
+	rootCmd.DisableSuggestions = false
 	rootCmd.SetHelpCommand(&cobra.Command{
 		Use:    "no-help",
 		Hidden: true,
