@@ -4,7 +4,7 @@ Communicating with Cloudflare API through command line interface
 # Table of Contents
 1. [Introduction](#introductions)
 2. [Usages](#usages)
-    1. [Installations](#installations)
+    1. [Downloads](#downloads)
     2. [Command usages](#commandusages)
 3. [Development](#developments)
     1. [Setup environment](#setupenvironment)
@@ -15,9 +15,9 @@ Communicating with Cloudflare API through command line interface
 ## Introduction <a name="introductions"></a>
 
 ## Usages <a name="usages"></a>
-Download latest binary from github
+Download latest binary from github at 
 
-### Installation <a name="installations"></a>
+### Downloads <a name="downloads"></a>
 __For Windows x64__
 
 Download latest build for Windows amd64 at this addess [cloudflare-windows-amd64-{release version}.zip](https://github.com/epiHATR/cloudflare-cli/releases)
