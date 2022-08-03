@@ -1,5 +1,5 @@
 # cloudflare-cli
-Running Cloudflare API through CLI
+Communicating with Cloudflare API through command line interface
 
 # Table of Contents
 1. [Introduction](#introductions)
