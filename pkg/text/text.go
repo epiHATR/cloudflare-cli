@@ -1,0 +1,22 @@
+package text
+
+const SubCmdHelpText = `
+
+Explore cloudflare-cli commands at https://github.com/epiHATR/cloudflare-cli`
+
+const CmdLoginLongText = `This command let you authenticate against Cloudflare REST API and store credential to local file
+	
+Usages
+	cloudflare login --email <your cloudflare email> --key <your cloudflare api key>`
+
+const CmdLoginNoCredentialText = `Error: no credentials provided, consider using flags or environment variables
+
+Usages:
+	cloudflare login --email <your cloudflare email> --key <your cloudflare api key>
+	cloudflare login --token <your cloudflare api token>`
+
+const ZoneCmdLongText = `Cloudflare API for zone help you create, update, list your zone via API.
+Make sure your login credentials has permission enough to retrieve those resources.`
+
+const ZoneListCmdLongText = `List all Cloudflare zones under your accounts.
+This command requires 'Zone.Read' on your Token API configuration or you have to 'Zone.List' permission on Cloudflare`
