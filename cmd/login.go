@@ -5,7 +5,7 @@ Copyright © 2022 Hai.Tran (github.com/epiHATR)
 package cmd
 
 import (
-	"cloudflare/pkg/api"
+	"cloudflare/pkg/authenticate"
 	"cloudflare/pkg/text"
 	"cloudflare/pkg/util"
 	"fmt"
@@ -30,7 +30,7 @@ var loginCmd = &cobra.Command{
 		// if token flag provided
 		if cfToken != "" {
 			log.Println("API Token was provided, ignored --email|-e and --key|-k")
-			res := api.VerifyToken(cfToken)
+			res := authenticate.VerifyToken(cfToken)
 			if res.Success {
 				_ = util.SetToken(cfToken)
 			} else {
@@ -39,7 +39,7 @@ var loginCmd = &cobra.Command{
 		} else {
 			if cfEmail != "" && cfApiKey != "" {
 				// if email & key flags provided
-				res := api.VerifyKeyEmail(cfEmail, cfApiKey)
+				res := authenticate.VerifyKeyEmail(cfEmail, cfApiKey)
 				if res.Success {
 					_ = util.SetEmailKey(cfEmail, cfApiKey)
 				} else {
@@ -53,7 +53,7 @@ var loginCmd = &cobra.Command{
 				if token != "" {
 					//use token as authenticate key
 					log.Println("authenticating using API token using environment variable CF_AUTH_TOKEN")
-					res := api.VerifyToken(token)
+					res := authenticate.VerifyToken(token)
 					if res.Success {
 						_ = util.SetToken(token)
 					} else {
@@ -68,7 +68,7 @@ var loginCmd = &cobra.Command{
 						os.Exit(1)
 					} else {
 						log.Println("authenticating against using configuration values for auth.email & auth.key")
-						res := api.VerifyKeyEmail(email, key)
+						res := authenticate.VerifyKeyEmail(email, key)
 						if res.Success {
 							_ = util.SetEmailKey(email, key)
 						} else {

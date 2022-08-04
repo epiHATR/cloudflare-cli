@@ -1,6 +1,7 @@
-package api
+package authenticate
 
 import (
+	"cloudflare/pkg/consts"
 	"cloudflare/pkg/structs"
 	"encoding/json"
 	"fmt"
@@ -12,7 +13,7 @@ import (
 
 func VerifyToken(input string) (result structs.Response) {
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", "https://api.cloudflare.com/client/v4/user/tokens/verify", nil)
+	req, err := http.NewRequest("GET", consts.ApiEndPoint+consts.TokenVerifyEndPoint, nil)
 	req.Header.Add("Authorization", "Bearer "+input)
 	response, err := client.Do(req)
 
@@ -31,7 +32,7 @@ func VerifyToken(input string) (result structs.Response) {
 
 func VerifyKeyEmail(email string, key string) (result structs.Response) {
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", "https://api.cloudflare.com/client/v4/user", nil)
+	req, err := http.NewRequest("GET", consts.ApiEndPoint+consts.EmailKeyVerifyEndPoint, nil)
 	req.Header.Add("X-Auth-Email", email)
 	req.Header.Add("X-Auth-Key", key)
 	response, err := client.Do(req)

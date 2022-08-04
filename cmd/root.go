@@ -5,6 +5,7 @@ Copyright © 2022 Hai.Tran (github.com/epiHATR)
 package cmd
 
 import (
+	"cloudflare/pkg/text"
 	"cloudflare/pkg/util"
 	"fmt"
 	"io/ioutil"
@@ -21,27 +22,12 @@ var isDebug bool = false
 var rootCmd = &cobra.Command{
 	Use:   "cloudflare",
 	Short: "CLOUDFLARE CLI version " + version,
-	Long: `A compact CLI works with Cloudflare REST API at https://api.cloudflare.com/v4
-
-Contributed at https://github.com/epiHATR/cloudflare-cli
-Author: Hai Tran (hidetran@gmail.com)
-`,
+	Long:  text.RootLongText,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("CLOUDFLARE CLI version " + version)
-		fmt.Println(`A compact CLI works with Cloudflare REST API at https://api.cloudflare.com/v4
-
-Contributed at https://github.com/epiHATR/cloudflare-cli	
-Author: Hai Tran (hidetran@gmail.com)
-
-Usages:
-	cloudflare version	get cloudflare-cli module version
-	cloudflare login	login to Cloudflare REST API
-
-Flags:
-	--help	display command help & instructions
-		`)
+		fmt.Fprintln(os.Stderr, text.AdditionalText)
+		os.Exit(1)
 	},
 }
 

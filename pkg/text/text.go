@@ -1,5 +1,25 @@
 package text
 
+const EmptyArgsText = `Error: please use --help|-h to explore cloudflare-cli commands`
+
+const RootLongText = `A compact CLI works with Cloudflare REST API at https://api.cloudflare.com/v4
+
+Author: Hai Tran (hidetran@gmail.com)
+Contributed at https://github.com/epiHATR/cloudflare-cli
+`
+
+const AdditionalText = `A compact CLI works with Cloudflare REST API at https://api.cloudflare.com/v4
+
+Author: Hai Tran (hidetran@gmail.com)
+Contributed at https://github.com/epiHATR/cloudflare-cli	
+
+Usages:
+	cloudflare version	get cloudflare-cli module version
+	cloudflare login	login to Cloudflare REST API
+
+Flags:
+	--help	display command help & instructions`
+
 const SubCmdHelpText = `
 
 Explore cloudflare-cli commands at https://github.com/epiHATR/cloudflare-cli`
