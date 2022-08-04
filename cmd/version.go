@@ -10,8 +10,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var versionNumber = "0.0.3"
-
 var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "show cloudflare-cli version",
