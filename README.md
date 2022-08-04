@@ -46,7 +46,7 @@ sudo chmod +x /usr/local/bin/cloudflare
 | [cloudflare](#cmd_cloudflare)                         | show cli introductions & starter command            |
 | [cloudflare version](#cmd_cloudflare_version)                 | display cli version and Cloudflare API version      |
 | [cloudflare login](#cmd_cloudflare_login)               | login into Cloudflare API                           |
-| cloudflare zone list | list Cloudflare zone |
+| [cloudflare zone list](#cmd_cloudflare_zone_list) | list Cloudflare zone in account |
 | cloudflare zone show | show Cloudflare zone common information |
 | cloudflare zone create | create new Cloudflare zone |
 | cloudflare zone pause | pause a cloudflare zone |
@@ -90,6 +90,21 @@ cloudflare version [ --short | -s ]
 #global flags                                   
                    [ --help | -h ]
                    [ --debug | -d ]
+```
+
+#### cloudflare zone list<a name="cmd_cloudflare_zone_list"></a>
+<p>List all Cloudflare zone under account</p>
+
+```bash
+cloudflare zone list [ --account-id ]
+                     [ --name | -n ]
+
+#global flags       
+                    [ --query | -q ]                           
+                    [ --output |-o ]
+                    [ --help | -h ]
+                    [ --debug | -d ]
+
 ```
 
 ## Development <a name="developments"></a>

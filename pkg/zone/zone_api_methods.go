@@ -9,15 +9,24 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/spf13/viper"
 )
 
-func GetAllZone() (result structs.ZoneListResponse) {
-	log.Println("get all zone in all Cloudflare Accounts")
+func GetAllZone(pageNumber int, account string, searchKey string) (result structs.ZoneListResponse) {
+	log.Println("get all zone in Cloudflare account")
 
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", consts.ApiEndPoint+consts.ZoneListEndPoint, nil)
+	queryUrl := consts.ApiEndPoint + consts.ZoneListEndPoint + "&page=" + strconv.Itoa(pageNumber)
+	if account != "" {
+		queryUrl += "&account.id=" + account
+	}
+	if searchKey != "" {
+		queryUrl += "&name=" + searchKey
+	}
+
+	req, err := http.NewRequest("GET", queryUrl, nil)
 	req.Header.Add("Authorization", "Bearer "+viper.GetString("auth.token"))
 	response, err := client.Do(req)
 

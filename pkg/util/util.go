@@ -81,11 +81,6 @@ func SetEmailKey(email string, key string) (res bool) {
 	return result
 }
 
-var (
-	result interface{}
-	err    error
-)
-
 func ToPrettyJson(input interface{}, query string) string {
 	var result interface{}
 	var err error
@@ -109,6 +104,25 @@ func ToPrettyJson(input interface{}, query string) string {
 		os.Exit(1)
 	}
 	return finalJSONString.String()
+}
+
+func ToPureJson(input interface{}, query string) string {
+
+	var result interface{}
+	var err error
+
+	if query != "" {
+		result, err = jmespath.Search(query, input)
+	} else {
+		result = input
+	}
+	b, err := json.Marshal(result)
+
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error: failed to marshal object ", err.Error())
+		os.Exit(1)
+	}
+	return string(b)
 }
 
 func ToPrettyYaml(input interface{}, query string) string {
