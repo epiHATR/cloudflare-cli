@@ -27,4 +27,18 @@ type Response struct {
 	Errors   []Error   `json:"errors"`
 }
 
+type Result struct {
+	Id     string `json:"id"`
+	Name   string `json:"name"`
+	Status string `json:"status"`
+	Paused bool   `json:"paused"`
+	Type   string `json:"type"`
+}
+
 //////////////////////////////////////
+type ZoneListResponse struct {
+	Success  bool      `json:"success"`
+	Messages []Message `json:"messages"`
+	Errors   []Error   `json:"errors"`
+	Result   []Result  `json:"result"`
+}
