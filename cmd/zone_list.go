@@ -39,20 +39,11 @@ var listCmd = &cobra.Command{
 			response := zone.GetAllZone(1, zoneListFlagAccountId, zoneListFlagAccountName)
 			if !response.Success {
 				fmt.Fprintln(os.Stderr, "Error: failed to list Cloudflare zones. The error is ", response.Errors[0].Message)
+				fmt.Fprintln(os.Stderr, text.SubCmdHelpText)
 				os.Exit(1)
 			} else {
 				log.Println("number of page: ", response.Result_Info.Total_pages)
-				switch flagOutput {
-
-				case "json":
-					fmt.Println(output.ToPrettyJson(response.Result, flagQuery))
-
-				case "yaml":
-					fmt.Println(output.ToPrettyYaml(response.Result, flagQuery))
-
-				default:
-					fmt.Println(output.ToPrettyJson(response.Result, flagQuery))
-				}
+				output.PrintOut(response.Result, flagQuery, flagOutput)
 			}
 		}
 	},

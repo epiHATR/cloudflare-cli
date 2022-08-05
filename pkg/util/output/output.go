@@ -11,6 +11,21 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+func PrintOut(result interface{}, flagQuery string, flagOutput string) {
+	log.Println("printing output with query ", flagQuery, flagOutput)
+	switch flagOutput {
+
+	case "json":
+		fmt.Println(ToPrettyJson(result, flagQuery))
+
+	case "yaml":
+		fmt.Println(ToPrettyYaml(result, flagQuery))
+
+	default:
+		fmt.Println(ToPrettyJson(result, flagQuery))
+	}
+}
+
 func ToPrettyJson(input interface{}, query string) string {
 	var result interface{}
 	var err error

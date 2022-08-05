@@ -56,7 +56,7 @@ sudo chmod +x /usr/local/bin/cloudflare
 | cloudflare zone set-plan | set Cloudflare zone plan by name or type |
 | cloudflare zone set-under-attack | set Cloudflare zone I'm under attack mode |
 | [cloudflare zone dns list](#cmd_cloudflare_zone_dns_list) | list DNS records on a Cloudflare zone  |
-| cloudflare zone dns show | show a DNS records details of a Cloudflare zone |
+| [cloudflare zone dns show](#cmd_cloudflare_zone_dns_show) | show a DNS records details of a Cloudflare zone |
 | cloudflare zone dns create | create a DNS records on a Cloudflare zone |
 | cloudflare zone dns update | change/update DNS records value on Cloudflare zone |
 | cloudflare zone dns delete | delete a DNS records on a Cloudflare zone |
@@ -105,7 +105,6 @@ cloudflare zone list [ --account-id ]
                     [ --output |-o ]
                     [ --help | -h ]
                     [ --debug | -d ]
-
 ```
 
 #### cloudflare zone show<a name="cmd_cloudflare_zone_show"></a>
@@ -120,7 +119,6 @@ cloudflare zone show [ --id | -i]
                     [ --output |-o ]
                     [ --help | -h ]
                     [ --debug | -d ]
-
 ```
 #### cloudflare zone dns list <a name="cmd_cloudflare_zone_dns_list"></a>
 <p>List all DNS records in a Cloudflare zone</p>
@@ -134,7 +132,20 @@ cloudflare zone dns list [ --zone-id | -i]
                         [ --output |-o ]
                         [ --help | -h ]
                         [ --debug | -d ]
+```
 
+#### cloudflare zone dns show <a name="cmd_cloudflare_zone_dns_show"></a>
+<p>Show details of a Cloudflare DNS record</p>
+
+```bash
+cloudflare zone dns show [ --id | -i ]
+                         [ --zone-id | -i]
+
+#global flags       
+                         [ --query | -q ]                           
+                         [ --output |-o ]
+                         [ --help | -h ]
+                         [ --debug | -d ]
 ```
 
 ## Development <a name="developments"></a>
@@ -146,7 +157,7 @@ cloudflare zone dns list [ --zone-id | -i]
 ### Incoming features <a name="incommingfeatures"></a>
 - [x] add --output|-o flag to allow output as json, yaml
 - [x] enable --query|-q flag to allow JMESpath based queries
-- [ ] enable login with email & key
+- [x] enable login with email & key
 
 ### Build <a name="build"></a>
 

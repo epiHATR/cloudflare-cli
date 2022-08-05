@@ -26,3 +26,17 @@ func GetZoneDns(zoneId string, recordType string) response.DnsListResponse {
 	}
 	return resObj
 }
+
+func GetZoneDnsDetail(zoneId string, dnsId string) response.DnsDetailResponse {
+	log.Println("getting DNS details in zone", zoneId)
+	queryUrl := fmt.Sprintf(endpoint.ApiEndPoint+endpoint.ZoneDetails+"/"+dnsId, zoneId)
+	respData := request.CreateRequest(queryUrl, "GET", nil)
+
+	resObj := response.DnsDetailResponse{}
+	err := json.Unmarshal(respData, &resObj)
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+	return resObj
+}

@@ -1,16 +1,5 @@
 package response
 
-///////// CLOUDFLARE API RESPONSE DATA /////////////////////
-type message struct {
-	Code    int    `json:"code"`
-	Message string `json:"message"`
-}
-
-type error struct {
-	Code    int    `json:"code"`
-	Message string `json:"message"`
-}
-
 type meta struct {
 	Step                      int  `json:"step"`
 	Custom_certificate_quota  int  `json:"custom_certificate_quota"`
@@ -52,6 +41,17 @@ type plan struct {
 	Externally_managed bool    `json:"externally_managed"`
 }
 
+type plan_pending struct {
+	Id            string `json:"id"`
+	Name          string `json:"name"`
+	Price         int    `json:"price"`
+	Currency      string `json:"currency"`
+	Frequency     string `json:"frequency"`
+	Legacy_id     string `json:"legacy_id"`
+	Is_subscribed bool   `json:"is_subscribed"`
+	Can_subscribe bool   `json:"can_subscribe"`
+}
+
 type result struct {
 	Id                    string       `json:"id"`
 	Name                  string       `json:"name"`
@@ -78,68 +78,10 @@ type result struct {
 	Name_servers          []string     `json:"name_servers"`
 }
 
-type dnsListMeta struct {
-	Auto_added             bool   `json:"auto_added"`
-	Managed_by_apps        bool   `json:"managed_by_apps"`
-	Managed_by_argo_tunnel bool   `json:"managed_by_argo_tunnel"`
-	Source                 string `json:"source"`
-}
-
-type dnslistResult struct {
-	Id          string      `json:"id"`
-	Zone_id     string      `json:"zone_id"`
-	Zone_name   string      `json:"zone_name"`
-	Name        string      `json:"name"`
-	Type        string      `json:"type"`
-	Content     string      `json:"content"`
-	Created_on  string      `json:"created_on"`
-	Modified_on string      `json:"modified_on"`
-	Meta        dnsListMeta `json:"meta"`
-}
-
-type result_Info struct {
-	Page        int `json:"page"`
-	Per_page    int `json:"per_page"`
-	Total_pages int `json:"total_pages"`
-	Count       int `json:"count"`
-	Total_count int `json:"total_count"`
-}
-
-type plan_pending struct {
-	Id            string `json:"id"`
-	Name          string `json:"name"`
-	Price         int    `json:"price"`
-	Currency      string `json:"currency"`
-	Frequency     string `json:"frequency"`
-	Legacy_id     string `json:"legacy_id"`
-	Is_subscribed bool   `json:"is_subscribed"`
-	Can_subscribe bool   `json:"can_subscribe"`
-}
-
-type Response struct {
-	Success  bool      `json:"success"`
-	Messages []message `json:"messages"`
-	Errors   []error   `json:"errors"`
-}
-
 type ZoneListResponse struct {
 	Success     bool        `json:"success"`
 	Messages    []message   `json:"messages"`
 	Errors      []error     `json:"errors"`
 	Result      []result    `json:"result"`
 	Result_Info result_Info `json:"result_info"`
-}
-
-type ZoneDetailResponse struct {
-	Success  bool      `json:"success"`
-	Messages []message `json:"messages"`
-	Errors   []error   `json:"errors"`
-	Result   result    `json:"result"`
-}
-
-type DnsListResponse struct {
-	Success  bool            `json:"success"`
-	Messages []message       `json:"messages"`
-	Errors   []error         `json:"errors"`
-	Result   []dnslistResult `json:"result"`
 }

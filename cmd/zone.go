@@ -12,7 +12,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var flagOutput = ""
+var flagOutput = "json"
 var flagQuery = ""
 
 // zoneCmd represents the zone command

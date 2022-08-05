@@ -11,7 +11,7 @@ import (
 	"os"
 )
 
-func VerifyToken(input string) (result response.Response) {
+func VerifyToken(input string) (result response.TokenResponse) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", endpoint.ApiEndPoint+endpoint.TokenVerifyEndPoint, nil)
 	req.Header.Add("Authorization", "Bearer "+input)
@@ -25,12 +25,12 @@ func VerifyToken(input string) (result response.Response) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	resp := response.Response{}
+	resp := response.TokenResponse{}
 	_ = json.Unmarshal(respData, &resp)
 	return resp
 }
 
-func VerifyKeyEmail(email string, key string) (result response.Response) {
+func VerifyKeyEmail(email string, key string) (result response.UserReponse) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", endpoint.ApiEndPoint+endpoint.EmailKeyVerifyEndPoint, nil)
 	req.Header.Add("X-Auth-Email", email)
@@ -46,7 +46,7 @@ func VerifyKeyEmail(email string, key string) (result response.Response) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	resp := response.Response{}
+	resp := response.UserReponse{}
 	_ = json.Unmarshal(respData, &resp)
 	return resp
 }

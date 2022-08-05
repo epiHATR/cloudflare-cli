@@ -32,17 +32,7 @@ var showCmd = &cobra.Command{
 				fmt.Fprintln(os.Stderr, "Error: failed to get Cloudflare zone details. The error is ", res.Errors[0].Message)
 				os.Exit(1)
 			} else {
-				switch flagOutput {
-
-				case "json":
-					fmt.Println(output.ToPrettyJson(res.Result, flagQuery))
-
-				case "yaml":
-					fmt.Println(output.ToPrettyYaml(res.Result, flagQuery))
-
-				default:
-					fmt.Println(output.ToPrettyJson(res.Result, flagQuery))
-				}
+				output.PrintOut(res.Result, flagQuery, flagOutput)
 			}
 
 		} else if zoneShowFlagZoneName != "" {
@@ -53,23 +43,7 @@ var showCmd = &cobra.Command{
 				fmt.Fprintln(os.Stderr, "Error: failed to get Cloudflare zone details. The error is ", res.Errors[0].Message)
 				os.Exit(1)
 			} else {
-				switch flagOutput {
-
-				case "json":
-					if len(res.Result) > 0 {
-						fmt.Println(output.ToPrettyJson(res.Result[0], flagQuery))
-					}
-
-				case "yaml":
-					if len(res.Result) > 0 {
-						fmt.Println(output.ToPrettyYaml(res.Result[0], flagQuery))
-					}
-
-				default:
-					if len(res.Result) > 0 {
-						fmt.Println(output.ToPrettyJson(res.Result[0], flagQuery))
-					}
-				}
+				output.PrintOut(res.Result[0], flagQuery, flagOutput)
 			}
 
 		} else {

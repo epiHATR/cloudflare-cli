@@ -45,4 +45,10 @@ const ZoneShowCmdLongText = `Get Cloudflare zone details by Id or Name.
 This command requires 'Zone.Read' on your Cloudflare token API configuration permission`
 
 const ZoneDNSListCmdLongText = `Get all DNS records in a specified Cloudflare zone.
-This commands requires 'Zone.Read' & 'DNS.Read' on your Cloudlfare token API configuration permission`
+This command requires 'Zone.Read' & 'DNS.Read' on your Cloudlfare token API configuration permission`
+
+var ZoneDnsLongText = `Manage your DNS records in the Cloudflare zone
+This command requires 'DNS.Read' & 'DNS.Create' on your Cloudflare token API configuration permission`
+
+var ZoneDnsShowLongText = `Show Cloudflare DNS record details
+This command requires 'DNS.Read' & 'DNS.Create' on your Cloudflare token API configuration permission`
