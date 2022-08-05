@@ -5,15 +5,15 @@ Copyright © 2022 Hai.Tran (github.com/epiHATR)
 package cmd
 
 import (
-	"cloudflare/pkg/text"
+	"cloudflare/pkg/consts/text"
 	"fmt"
 	"os"
 
 	"github.com/spf13/cobra"
 )
 
-var output = ""
-var query = ""
+var flagOutput = ""
+var flagQuery = ""
 
 // zoneCmd represents the zone command
 var zoneCmd = &cobra.Command{
@@ -30,6 +30,6 @@ var zoneCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(zoneCmd)
-	rootCmd.PersistentFlags().StringVarP(&output, "output", "o", "", "show output format in json, yaml, table, ...")
-	rootCmd.PersistentFlags().StringVarP(&query, "query", "q", "", "query in result using JMESpath query")
+	zoneCmd.PersistentFlags().StringVarP(&flagOutput, "output", "o", "", "show output format in json, yaml, table, ...")
+	zoneCmd.PersistentFlags().StringVarP(&flagQuery, "query", "q", "", "query in result using JMESpath query")
 }

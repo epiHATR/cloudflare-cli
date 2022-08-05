@@ -3,10 +3,11 @@ Communicating with Cloudflare API through command line interface
 
 # Table of Contents
 1. [Introduction](#introductions)
-2. [Usages](#usages)
+2. [Features](RELEASE.md)
+3. [Usages](#usages)
     1. [Downloads](#downloads)
     2. [Command usages](#commandusages)
-3. [Development](#developments)
+4. [Development](#developments)
     1. [Setup environment](#setupenvironment)
     2. [Add new sub command](#addsubcommands)
     3. [Incoming features](#incommingfeatures)
@@ -47,14 +48,14 @@ sudo chmod +x /usr/local/bin/cloudflare
 | [cloudflare version](#cmd_cloudflare_version)                 | display cli version and Cloudflare API version      |
 | [cloudflare login](#cmd_cloudflare_login)               | login into Cloudflare API                           |
 | [cloudflare zone list](#cmd_cloudflare_zone_list) | list Cloudflare zone in account |
-| cloudflare zone show | show Cloudflare zone common information |
+| [cloudflare zone show](#cmd_cloudflare_zone_show) | show Cloudflare zone common information |
 | cloudflare zone create | create new Cloudflare zone |
 | cloudflare zone pause | pause a cloudflare zone |
 | cloudflare zone delete | delete a Cloudflare zone |
 | cloudflare zone set-type | set Cloudflare zone type (parital, full, delegated)|
 | cloudflare zone set-plan | set Cloudflare zone plan by name or type |
 | cloudflare zone set-under-attack | set Cloudflare zone I'm under attack mode |
-| cloudflare zone dns list | list DNS records on a Cloudflare zone  |
+| [cloudflare zone dns list](#cmd_cloudflare_zone_dns_list) | list DNS records on a Cloudflare zone  |
 | cloudflare zone dns show | show a DNS records details of a Cloudflare zone |
 | cloudflare zone dns create | create a DNS records on a Cloudflare zone |
 | cloudflare zone dns update | change/update DNS records value on Cloudflare zone |
@@ -107,6 +108,35 @@ cloudflare zone list [ --account-id ]
 
 ```
 
+#### cloudflare zone show<a name="cmd_cloudflare_zone_show"></a>
+<p>List all Cloudflare zone under account</p>
+
+```bash
+cloudflare zone show [ --id | -i]
+                     [ --name | -n ]
+
+#global flags       
+                    [ --query | -q ]                           
+                    [ --output |-o ]
+                    [ --help | -h ]
+                    [ --debug | -d ]
+
+```
+#### cloudflare zone dns list <a name="cmd_cloudflare_zone_dns_list"></a>
+<p>List all DNS records in a Cloudflare zone</p>
+
+```bash
+cloudflare zone dns list [ --zone-id | -i]
+                         [ --type | -t ]
+
+#global flags       
+                        [ --query | -q ]                           
+                        [ --output |-o ]
+                        [ --help | -h ]
+                        [ --debug | -d ]
+
+```
+
 ## Development <a name="developments"></a>
 
 ### Setup development environment <a name="setupenvironment"></a>
@@ -114,32 +144,9 @@ cloudflare zone list [ --account-id ]
 ### Add sub commands <a name="addsubcommands"></a>
 
 ### Incoming features <a name="incommingfeatures"></a>
-##### Add jmsePath in --query|-q flags
-```bash
-package main
-
-import (
-	"encoding/json"
-	"fmt"
-	"os"
-
-	"github.com/jmespath/go-jmespath"
-)
-
-func main() {
-	var jsondata = []byte(`[{"id":"/subscriptions/c3f3aa63-3fdc-402f-9b03-30fe0a3df3ef/resourceGroups/NetworkWatcherRG","location":"northeurope","managedBy":null,"name":"NetworkWatcherRG","properties":{"provisioningState":"Succeeded"},"tags":null,"type":"Microsoft.Resources/resourceGroups"}]`)
-	var data interface{}
-	err := json.Unmarshal(jsondata, &data)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "sss")
-	}
-	result, err := jmespath.Search("[].id", data)
-	body, _ := json.Marshal(result)
-	fmt.Println(string(body))
-}
-
-```
-##### Add --output|-o flag
+- [x] add --output|-o flag to allow output as json, yaml
+- [x] enable --query|-q flag to allow JMESpath based queries
+- [ ] enable login with email & key
 
 ### Build <a name="build"></a>
 

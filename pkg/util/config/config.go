@@ -1,22 +1,17 @@
-package util
+package config
 
 import (
-	"bytes"
-	"cloudflare/pkg/structs"
-	"encoding/json"
-	"fmt"
+	"cloudflare/pkg/model/config"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
 
-	"github.com/jmespath/go-jmespath"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"gopkg.in/yaml.v2"
 )
 
-func LoadConfig() (config *structs.Config) {
+func LoadConfig() (conf *config.Config) {
 	// Find home directory.
 	home, err := os.UserHomeDir()
 	cobra.CheckErr(err)
@@ -28,7 +23,7 @@ func LoadConfig() (config *structs.Config) {
 	viper.SetConfigName(configFileName)
 	viper.AutomaticEnv()
 
-	c := &structs.Config{}
+	c := &config.Config{}
 	var path = ""
 
 	// If a config file is found, read it in.
@@ -79,64 +74,4 @@ func SetEmailKey(email string, key string) (res bool) {
 	viper.WriteConfig()
 	log.Println("saved email & key to .cloudflare configuration file at ", viper.ConfigFileUsed())
 	return result
-}
-
-func ToPrettyJson(input interface{}, query string) string {
-	var result interface{}
-	var err error
-
-	if query != "" {
-		result, err = jmespath.Search(query, input)
-	} else {
-		result = input
-	}
-
-	b, err := json.Marshal(result)
-
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "Error: failed to marshal object ", err.Error())
-		os.Exit(1)
-	}
-
-	var finalJSONString bytes.Buffer
-	if err := json.Indent(&finalJSONString, []byte(b), "", "    "); err != nil {
-		log.Fatal(err)
-		os.Exit(1)
-	}
-	return finalJSONString.String()
-}
-
-func ToPureJson(input interface{}, query string) string {
-
-	var result interface{}
-	var err error
-
-	if query != "" {
-		result, err = jmespath.Search(query, input)
-	} else {
-		result = input
-	}
-	b, err := json.Marshal(result)
-
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "Error: failed to marshal object ", err.Error())
-		os.Exit(1)
-	}
-	return string(b)
-}
-
-func ToPrettyYaml(input interface{}, query string) string {
-	var result interface{}
-	var err error
-
-	if query != "" {
-		result, err = jmespath.Search(query, input)
-	} else {
-		result = input
-	}
-	y, err := yaml.Marshal(result)
-	if err != nil {
-		fmt.Printf("Error: %v\n", err)
-	}
-	return string(y)
 }

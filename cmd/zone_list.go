@@ -6,9 +6,9 @@ package cmd
 
 import (
 	"bytes"
-	"cloudflare/pkg/text"
-	"cloudflare/pkg/util"
-	methods "cloudflare/pkg/zone"
+	"cloudflare/pkg/api/zone"
+	"cloudflare/pkg/consts/text"
+	"cloudflare/pkg/util/output"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -25,34 +25,33 @@ func PrettyString(str string) (string, error) {
 	return prettyJSON.String(), nil
 }
 
-var accountId = ""
-var name = ""
+var zoneListFlagAccountId = ""
+var zoneListFlagAccountName = ""
 
 // listCmd represents the list command
 var listCmd = &cobra.Command{
 	Use:   "list",
 	Short: "list all Cloudflare zones",
-	Long:  text.ZoneCmdLongText + text.SubCmdHelpText,
+	Long:  text.ZoneListCmdLongText + text.SubCmdHelpText,
 	Run: func(cmd *cobra.Command, args []string) {
+
 		if len(args) == 0 {
-
-			response := methods.GetAllZone(1, accountId, name)
-
+			response := zone.GetAllZone(1, zoneListFlagAccountId, zoneListFlagAccountName)
 			if !response.Success {
 				fmt.Fprintln(os.Stderr, "Error: failed to list Cloudflare zones. The error is ", response.Errors[0].Message)
 				os.Exit(1)
 			} else {
 				log.Println("number of page: ", response.Result_Info.Total_pages)
-				switch output {
+				switch flagOutput {
 
 				case "json":
-					fmt.Println(util.ToPrettyJson(response.Result, query))
+					fmt.Println(output.ToPrettyJson(response.Result, flagQuery))
 
 				case "yaml":
-					fmt.Println(util.ToPrettyYaml(response.Result, query))
+					fmt.Println(output.ToPrettyYaml(response.Result, flagQuery))
 
 				default:
-					fmt.Println(util.ToPrettyJson(response.Result, query))
+					fmt.Println(output.ToPrettyJson(response.Result, flagQuery))
 				}
 			}
 		}
@@ -61,6 +60,6 @@ var listCmd = &cobra.Command{
 
 func init() {
 	zoneCmd.AddCommand(listCmd)
-	listCmd.Flags().StringVarP(&accountId, "account-id", "", "", "cloudflare account id (organization id)")
-	listCmd.Flags().StringVarP(&name, "name", "n", "", "specify zone name to search")
+	listCmd.Flags().StringVarP(&zoneListFlagAccountId, "account-id", "", "", "cloudflare account id (organization id)")
+	listCmd.Flags().StringVarP(&zoneListFlagAccountName, "account-name", "n", "", "specify zone name to search")
 }

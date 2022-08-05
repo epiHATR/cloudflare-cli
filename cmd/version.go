@@ -20,10 +20,9 @@ var versionCmd = &cobra.Command{
 		if shortTag {
 			fmt.Println(version)
 		} else {
-			fmt.Println(`cloudflare-cli version ` + version)
-			fmt.Println(`Cloudflare REST API v4 at https://api.cloudflare.com/v4`)
+			fmt.Println("Cloudflare CLI", version)
+			fmt.Println("Cloudflare REST API v4 at https://api.cloudflare.com/v4")
 		}
-
 	},
 }
 

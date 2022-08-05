@@ -5,8 +5,8 @@ Copyright © 2022 Hai.Tran (github.com/epiHATR)
 package cmd
 
 import (
-	"cloudflare/pkg/text"
-	"cloudflare/pkg/util"
+	"cloudflare/pkg/consts/text"
+	"cloudflare/pkg/util/config"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -60,5 +60,5 @@ func initConfig() {
 	} else {
 		log.SetOutput(ioutil.Discard)
 	}
-	util.LoadConfig()
+	config.LoadConfig()
 }

@@ -39,4 +39,10 @@ const ZoneCmdLongText = `Cloudflare API for zone help you create, update, list y
 Make sure your login credentials has permission enough to retrieve those resources.`
 
 const ZoneListCmdLongText = `List all Cloudflare zones under your accounts.
-This command requires 'Zone.Read' on your Token API configuration or you have to 'Zone.List' permission on Cloudflare`
+This command requires 'Zone.Read' on your Cloudflare token API configuration or you have to 'Zone.List' permission`
+
+const ZoneShowCmdLongText = `Get Cloudflare zone details by Id or Name.
+This command requires 'Zone.Read' on your Cloudflare token API configuration permission`
+
+const ZoneDNSListCmdLongText = `Get all DNS records in a specified Cloudflare zone.
+This commands requires 'Zone.Read' & 'DNS.Read' on your Cloudlfare token API configuration permission`
