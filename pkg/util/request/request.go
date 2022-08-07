@@ -1,8 +1,8 @@
 package request
 
 import (
+	"bytes"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -11,11 +11,14 @@ import (
 	"github.com/spf13/viper"
 )
 
-func CreateRequest(url string, method string, body io.Reader) []byte {
+func CreateRequest(url string, method string, bodyData string) []byte {
 	log.Println("query url: ", url)
 	log.Println("method: ", method)
+	log.Println("body: ", bodyData)
 
-	req, err := http.NewRequest(method, url, body)
+	var jsonStr = []byte(bodyData)
+	req, err := http.NewRequest(method, url, bytes.NewBuffer(jsonStr))
+
 	token := viper.GetString("auth.token")
 	if token != "" {
 		log.Println("performing HTTP request using API Token")

@@ -57,7 +57,7 @@ sudo chmod +x /usr/local/bin/cloudflare
 | cloudflare zone set-under-attack | set Cloudflare zone I'm under attack mode |
 | [cloudflare zone dns list](#cmd_cloudflare_zone_dns_list) | list DNS records on a Cloudflare zone  |
 | [cloudflare zone dns show](#cmd_cloudflare_zone_dns_show) | show a DNS records details of a Cloudflare zone |
-| cloudflare zone dns create | create a DNS records on a Cloudflare zone |
+| [cloudflare zone dns add](#cmd_cloudflare_zone_dns_add) | add a DNS records on a Cloudflare zone |
 | cloudflare zone dns update | change/update DNS records value on Cloudflare zone |
 | cloudflare zone dns delete | delete a DNS records on a Cloudflare zone |
 
@@ -66,7 +66,7 @@ sudo chmod +x /usr/local/bin/cloudflare
 
 ```bash
 cloudflare [ --help | -h ]
-           [ --debug | -d ]
+           [ --debug ]
 ```
 
 #### cloudflare login <a name="cmd_cloudflare_login"></a>
@@ -79,7 +79,7 @@ cloudflare login [ --token | -t ]
 
 #global flags                                   
                  [ --help | -h ]
-                 [ --debug | -d ]
+                 [ --debug ]
 ```
 
 #### cloudflare version<a name="cmd_cloudflare_version"></a>
@@ -90,7 +90,7 @@ cloudflare version [ --short | -s ]
 
 #global flags                                   
                    [ --help | -h ]
-                   [ --debug | -d ]
+                   [ --debug ]
 ```
 
 #### cloudflare zone list<a name="cmd_cloudflare_zone_list"></a>
@@ -104,7 +104,7 @@ cloudflare zone list [ --account-id ]
                     [ --query | -q ]                           
                     [ --output |-o ]
                     [ --help | -h ]
-                    [ --debug | -d ]
+                    [ --debug ]
 ```
 
 #### cloudflare zone show<a name="cmd_cloudflare_zone_show"></a>
@@ -118,7 +118,7 @@ cloudflare zone show [ --id | -i]
                     [ --query | -q ]                           
                     [ --output |-o ]
                     [ --help | -h ]
-                    [ --debug | -d ]
+                    [ --debug ]
 ```
 #### cloudflare zone dns list <a name="cmd_cloudflare_zone_dns_list"></a>
 <p>List all DNS records in a Cloudflare zone</p>
@@ -131,7 +131,7 @@ cloudflare zone dns list [ --zone-id | -i]
                         [ --query | -q ]                           
                         [ --output |-o ]
                         [ --help | -h ]
-                        [ --debug | -d ]
+                        [ --debug ]
 ```
 
 #### cloudflare zone dns show <a name="cmd_cloudflare_zone_dns_show"></a>
@@ -145,7 +145,22 @@ cloudflare zone dns show [ --id | -i ]
                          [ --query | -q ]                           
                          [ --output |-o ]
                          [ --help | -h ]
-                         [ --debug | -d ]
+                         [ --debug ]
+```
+
+#### cloudflare zone dns add <a name="cmd_cloudflare_zone_dns_add"></a>
+<p>Add a Cloudflare DNS record and return its result</p>
+
+See data payload format at [Cloudflare API documentation - create DNS record](https://api.cloudflare.com/#dns-records-for-a-zone-create-dns-record)
+
+```bash
+cloudflare zone dns add [ --zone-id | -i]
+                        [ --data|-d ]
+#global flags       
+                        [ --query | -q ]                           
+                        [ --output |-o ]
+                        [ --help | -h ]
+                        [ --debug ]
 ```
 
 ## Development <a name="developments"></a>

@@ -14,8 +14,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var dnsListFlagRecordType = ""
 var dnsListFlagZoneId = ""
+var dnsListFlagRecordType = ""
 
 // dnsCmd represents the dns command
 var dnsListCmd = &cobra.Command{

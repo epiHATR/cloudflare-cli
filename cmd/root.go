@@ -49,7 +49,7 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	rootCmd.PersistentFlags().BoolVarP(&isDebug, "debug", "d", false, "show debugging information in output windows")
+	rootCmd.PersistentFlags().BoolVarP(&isDebug, "debug", "", false, "show debugging information in output windows")
 	rootCmd.PersistentFlags().BoolP("help", "h", false, "show command help for instructions and examples")
 }
 

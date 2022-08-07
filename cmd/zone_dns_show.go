@@ -15,8 +15,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var dnsShowCmdFlagRecordId = ""
 var dnsShowCmdFlagZoneId = ""
+var dnsShowCmdFlagRecordId = ""
 
 // dnsCmd represents the dns command
 var dnsShowCmd = &cobra.Command{
@@ -42,7 +42,7 @@ var dnsShowCmd = &cobra.Command{
 
 		res := dns.GetZoneDnsDetail(dnsShowCmdFlagZoneId, dnsShowCmdFlagRecordId)
 		if !res.Success {
-			fmt.Fprintln(os.Stderr, "Error: failed to get DNS record details. The error is ", res.Errors[0].Message)
+			fmt.Fprintln(os.Stderr, "Error: failed to get DNS record details. The error is", res.Errors[0].Message)
 			os.Exit(1)
 		} else {
 			output.PrintOut(res.Result, flagQuery, flagOutput)

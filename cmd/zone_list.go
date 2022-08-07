@@ -38,7 +38,7 @@ var listCmd = &cobra.Command{
 		if len(args) == 0 {
 			response := zone.GetAllZone(1, zoneListFlagAccountId, zoneListFlagAccountName)
 			if !response.Success {
-				fmt.Fprintln(os.Stderr, "Error: failed to list Cloudflare zones. The error is ", response.Errors[0].Message)
+				fmt.Fprintln(os.Stderr, "Error: failed to list Cloudflare zones. The error is", response.Errors[0].Message)
 				fmt.Fprintln(os.Stderr, text.SubCmdHelpText)
 				os.Exit(1)
 			} else {

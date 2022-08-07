@@ -52,3 +52,8 @@ This command requires 'DNS.Read' & 'DNS.Create' on your Cloudflare token API con
 
 var ZoneDnsShowLongText = `Show Cloudflare DNS record details
 This command requires 'DNS.Read' & 'DNS.Create' on your Cloudflare token API configuration permission`
+
+var ZoneDNSAddCmdLongText = `Add new DNS record to Cloudflare zone.
+This command requires 'DNS.Read' & 'DNS.Create' on your Cloudflare token API configuration permission.
+See Cloudflare API documentation at https://api.cloudflare.com/#dns-records-for-a-zone-create-dns-record
+`

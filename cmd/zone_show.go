@@ -29,7 +29,7 @@ var showCmd = &cobra.Command{
 			res = zone.GetZoneById(zoneShowFlagZoneId)
 			//manipulate response
 			if !res.Success {
-				fmt.Fprintln(os.Stderr, "Error: failed to get Cloudflare zone details. The error is ", res.Errors[0].Message)
+				fmt.Fprintln(os.Stderr, "Error: failed to get Cloudflare zone details. The error is", res.Errors[0].Message)
 				os.Exit(1)
 			} else {
 				output.PrintOut(res.Result, flagQuery, flagOutput)
@@ -40,7 +40,7 @@ var showCmd = &cobra.Command{
 			res = zone.GetZoneByName(zoneShowFlagZoneName)
 			//manipulate response
 			if !res.Success {
-				fmt.Fprintln(os.Stderr, "Error: failed to get Cloudflare zone details. The error is ", res.Errors[0].Message)
+				fmt.Fprintln(os.Stderr, "Error: failed to get Cloudflare zone details. The error is", res.Errors[0].Message)
 				os.Exit(1)
 			} else {
 				output.PrintOut(res.Result[0], flagQuery, flagOutput)

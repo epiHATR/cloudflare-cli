@@ -21,7 +21,7 @@ func GetAllZone(pageNumber int, account string, searchKey string) (result respon
 		queryUrl += "&name=" + searchKey
 	}
 
-	respData := request.CreateRequest(queryUrl, "GET", nil)
+	respData := request.CreateRequest(queryUrl, "GET", "")
 	resObj := response.ZoneListResponse{}
 
 	err := json.Unmarshal(respData, &resObj)
@@ -36,7 +36,7 @@ func GetAllZone(pageNumber int, account string, searchKey string) (result respon
 func GetZoneById(id string) response.ZoneDetailResponse {
 	log.Println("get zone by ID", id)
 	queryUrl := endpoint.ApiEndPoint + endpoint.ZoneDetailEndPoint + "/" + id
-	respData := request.CreateRequest(queryUrl, "GET", nil)
+	respData := request.CreateRequest(queryUrl, "GET", "")
 
 	resObj := response.ZoneDetailResponse{}
 	err := json.Unmarshal(respData, &resObj)
@@ -52,7 +52,7 @@ func GetZoneByName(name string) response.ZoneListResponse {
 	queryUrl := endpoint.ApiEndPoint + endpoint.ZoneDetailEndPoint + "?name=" + name
 
 	log.Println("the request url: ", queryUrl)
-	respData := request.CreateRequest(queryUrl, "GET", nil)
+	respData := request.CreateRequest(queryUrl, "GET", "")
 
 	resObj := response.ZoneListResponse{}
 	err := json.Unmarshal(respData, &resObj)

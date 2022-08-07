@@ -22,6 +22,7 @@ var dnsCmd = &cobra.Command{
 			fmt.Fprintln(os.Stderr, text.EmptyArgsText+text.SubCmdHelpText)
 			os.Exit(1)
 		}
+		fmt.Print(cmd.Aliases)
 	},
 }
 

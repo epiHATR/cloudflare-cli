@@ -17,7 +17,7 @@ func GetZoneDns(zoneId string, recordType string) response.DnsListResponse {
 		queryUrl += "&type=" + recordType
 	}
 
-	respData := request.CreateRequest(queryUrl, "GET", nil)
+	respData := request.CreateRequest(queryUrl, "GET", "")
 	resObj := response.DnsListResponse{}
 	err := json.Unmarshal(respData, &resObj)
 	if err != nil {
@@ -30,7 +30,22 @@ func GetZoneDns(zoneId string, recordType string) response.DnsListResponse {
 func GetZoneDnsDetail(zoneId string, dnsId string) response.DnsDetailResponse {
 	log.Println("getting DNS details in zone", zoneId)
 	queryUrl := fmt.Sprintf(endpoint.ApiEndPoint+endpoint.ZoneDetails+"/"+dnsId, zoneId)
-	respData := request.CreateRequest(queryUrl, "GET", nil)
+	respData := request.CreateRequest(queryUrl, "GET", "")
+
+	resObj := response.DnsDetailResponse{}
+	err := json.Unmarshal(respData, &resObj)
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+	return resObj
+}
+
+func AddDNSRecord(zoneId string, jsonData string) response.DnsDetailResponse {
+	log.Println("creating DNS record in", zoneId)
+
+	queryUrl := fmt.Sprintf(endpoint.ApiEndPoint+endpoint.ZoneDetails, zoneId)
+	respData := request.CreateRequest(queryUrl, "POST", jsonData)
 
 	resObj := response.DnsDetailResponse{}
 	err := json.Unmarshal(respData, &resObj)
