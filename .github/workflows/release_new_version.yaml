@@ -1,0 +1,55 @@
+name: Create Release
+on:
+  workflow_dispatch:
+    inputs:
+      majorNumber:
+        required: true
+        type: text
+        description: Major
+        default: v0
+      minorNumber:
+        required: true
+        type: text
+        description: Minor
+        default: 0
+      buildNumber:
+        required: true
+        type: text
+        description: BuildNumber
+        default: 0
+
+jobs:
+  Init:
+    name: Release CICD
+    runs-on: 'ubuntu-latest'    
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Go
+        run: |
+          VERSION="1.18.5"
+          ARCH="amd64"
+          curl -O -L "https://go.dev/dl/go${VERSION}.linux-${ARCH}.tar.gz"
+          sudo tar -C /usr/local -xzf go${VERSION}.linux-${ARCH}.tar.gz
+          echo "export GOPATH=$HOME/go" >> ~/.bash_profile
+          echo "export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin" >> ~/.bash_profile
+          source ~/.bash_profile
+          go version
+
+      - name: Install cobra for Go
+        run: |
+
+      - name: Run Tests
+        run: |
+
+      - name: Go build with version
+        run: |
+          version="${{ github.event.inputs.majorNumber }}.${{ github.event.inputs.minorNumber}}.${{ github.event.inputs.buildNumber}}.${{ github.run_number }}"
+          echo "::notice title=Version :: ${version}"
+        
+      - name: Create Github Tag
+        run: |
+       
+      - name: Create Release with tag
+        run: |
+        

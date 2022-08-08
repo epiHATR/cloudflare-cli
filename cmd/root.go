@@ -15,7 +15,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var version = "0.0.4"
+var (
+	version string = "v0.1.0"
+)
+
 var isDebug bool = false
 
 // rootCmd represents the base command when called without any subcommands

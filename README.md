@@ -293,18 +293,25 @@ cloudflare zone zone plan upgrade [ --zone-id ]
 Following command running on MACOS M1 which will create a release version of cloudflare-cli, targeting for:
 __Windows exe__
 ```
-version="v0.0.x"
-GOOS=windows GOARCH=amd64 go build -o "release/windows-amd64-$version/cloudflare.exe" cloudflare
+version="v0.1.x"
+GOOS=windows GOARCH=amd64 go build -ldflags "-X cloudflare/cmd.version=$version" -o "release/windows-amd64-$version/cloudflare.exe" cloudflare
+cd release/windows-amd64-$version
+./cloudflare version -s
+tar -cvf windows-amd64-$version.zip cloudflare.exe
 ```
 __For Linux 64 binary__
 ```
-GOOS=linux GOARCH=amd64 go build -o "release/linux-amd64-$version/cloudflare" cloudflare
+version="v0.1.0"
+GOOS=linux GOARCH=amd64 go build -ldflags "-X cloudflare/cmd.version=$version" -o "release/linux-amd64-$version/cloudflare" cloudflare
 cd release/linux-amd64-$version
+./cloudflare version -s
 tar -czvf linux-amd64-$version.tar.gz cloudflare
 ```
 __For MacOS binary__
 ```
-GOOS=darwin GOARCH=arm64 go build -o "release/darwin-arm64-$version/cloudflare" cloudflare
+version="v0.1.0"
+GOOS=darwin GOARCH=arm64 go build -ldflags "-X cloudflare/cmd.version=$version" -o "release/darwin-arm64-$version/cloudflare" cloudflare
 cd release/darwin-arm64-$version
+./cloudflare version -s
 tar -czvf darwin-arm64-$version.tar.gz cloudflare
 ```

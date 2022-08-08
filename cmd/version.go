@@ -13,8 +13,7 @@ import (
 var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "show cloudflare-cli version",
-	Long: `Show current version of cloudflare-cli and the latest REST API version of Cloudflare
-	`,
+	Long:  `Show current version of cloudflare-cli and the latest REST API version of Cloudflare`,
 	Run: func(cmd *cobra.Command, args []string) {
 		shortTag, _ := cmd.Flags().GetBool("short")
 		if shortTag {
