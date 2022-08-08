@@ -25,11 +25,11 @@ var dnsAdd = &cobra.Command{
 	Long:  text.ZoneDNSAddCmdLongText + text.SubCmdHelpText,
 	Run: func(cmd *cobra.Command, args []string) {
 		errText := []string{}
-		if dnsAddCmdZoneId == "" {
+		if len(dnsAddCmdZoneId) <= 0 {
 			errText = append(errText, "--zone-id")
 		}
 
-		if dnsAddCmdData == "" {
+		if len(dnsAddCmdData) <= 0 {
 			errText = append(errText, "--data|-d")
 		}
 

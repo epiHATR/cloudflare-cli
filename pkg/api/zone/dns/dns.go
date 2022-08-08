@@ -55,3 +55,33 @@ func AddDNSRecord(zoneId string, jsonData string) response.DnsDetailResponse {
 	}
 	return resObj
 }
+
+func UpdateDnsRecord(zoneId string, dnsId string, jsonData string) response.DnsDetailResponse {
+	log.Println("updating DNS record in", zoneId)
+
+	queryUrl := fmt.Sprintf(endpoint.ApiEndPoint+endpoint.ZoneDetails+"/"+dnsId, zoneId)
+	respData := request.CreateRequest(queryUrl, "PUT", jsonData)
+
+	resObj := response.DnsDetailResponse{}
+	err := json.Unmarshal(respData, &resObj)
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+	return resObj
+}
+
+func DeleteDnsRecord(zoneId string, dnsRecordId string) response.DnsDetailResponse {
+	log.Println("deleting DNS record in", zoneId)
+
+	queryUrl := fmt.Sprintf(endpoint.ApiEndPoint+endpoint.ZoneDetails+"/"+dnsRecordId, zoneId)
+	respData := request.CreateRequest(queryUrl, "DELETE", dnsRecordId)
+
+	resObj := response.DnsDetailResponse{}
+	err := json.Unmarshal(respData, &resObj)
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+	return resObj
+}

@@ -60,8 +60,8 @@ sudo chmod +x /usr/local/bin/cloudflare
 | [cloudflare zone dns list](#cmd_cloudflare_zone_dns_list) | list DNS records on a Cloudflare zone  |
 | [cloudflare zone dns show](#cmd_cloudflare_zone_dns_show) | show a DNS records details of a Cloudflare zone |
 | [cloudflare zone dns add](#cmd_cloudflare_zone_dns_add) | add a DNS records on a Cloudflare zone |
-| cloudflare zone dns update | change/update DNS records value on Cloudflare zone |
-| cloudflare zone dns delete | delete a DNS records on a Cloudflare zone |
+| [cloudflare zone dns update](#cmd_cloudflare_zone_dns_update) | change/update DNS records value on Cloudflare zone |
+| [cloudflare zone dns delete](#cmd_cloudflare_zone_dns_delete)| delete a DNS records on a Cloudflare zone |
 
 #### cloudflare <a name="cmd_cloudflare"></a>
 <p>show cli introductions & starter command</p>
@@ -156,7 +156,7 @@ cloudflare zone dns show [ --id | -i ]
 See data payload format at [Cloudflare API documentation - create DNS record](https://api.cloudflare.com/#dns-records-for-a-zone-create-dns-record)
 
 ```bash
-cloudflare zone dns add [ --zone-id | -i]
+cloudflare zone dns add [ --zone-id ]
                         [ --data|-d ]
 #global flags       
                         [ --query | -q ]                           
@@ -165,11 +165,42 @@ cloudflare zone dns add [ --zone-id | -i]
                         [ --debug ]
 ```
 
+#### cloudflare zone dns update <a name="cmd_cloudflare_zone_dns_update"></a>
+<p>Update a Cloudflare DNS record</p>
+
+See data payload format at [Cloudflare API documentation - create DNS record](https://api.cloudflare.com/#dns-records-for-a-zone-update-dns-record)
+
+```bash
+cloudflare zone dns delete [ --zone-id ]
+                           [ --id | -i ]
+                           [ --data | -d ]
+                           [ --force | -f]
+#global flags       
+                           [ --query | -q ]                           
+                           [ --output |-o ]
+                           [ --help | -h ]
+                           [ --debug ]
+```
+
+#### cloudflare zone dns delete <a name="cmd_cloudflare_zone_dns_delete"></a>
+<p>Delete a Cloudflare DNS record</p>
+
+```bash
+cloudflare zone dns delete [ --zone-id ]
+                           [ --id | -i ]
+                           [ --force | -f]
+#global flags       
+                           [ --query | -q ]                           
+                           [ --output |-o ]
+                           [ --help | -h ]
+                           [ --debug ]
+```
+
 #### cloudflare zone setting pause <a name="cmd_cloudflare_zone_setting_pause"></a>
 <p>Pause a Cloudfalre zone</p>
 
 ```bash
-cloudflare zone setting pause [ --zone-id | -i]
+cloudflare zone setting pause [ --zone-id ]
 
 #global flags       
                               [ --query | -q ]                           
@@ -182,7 +213,7 @@ cloudflare zone setting pause [ --zone-id | -i]
 <p>UnPause a Cloudfalre zone</p>
 
 ```bash
-cloudflare zone setting unpause [ --zone-id | -i]
+cloudflare zone setting unpause [ --zone-id]
 
 #global flags       
                                 [ --query | -q ]                           
@@ -213,10 +244,10 @@ cloudflare zone zone plan list [ --zone-id]
                                [ --all-available|-a ]
                                [ --rate-plan-only ]
 #global flags       
-                                [ --query | -q ]                           
-                                [ --output |-o ]
-                                [ --help | -h ]
-                                [ --debug ]
+                               [ --query | -q ]                           
+                               [ --output |-o ]
+                               [ --help | -h ]
+                               [ --debug ]
 ```
 
 #### cloudflare zone plan show<a name="cmd_cloudflare_zone_plan_show"></a>
@@ -226,10 +257,10 @@ cloudflare zone zone plan list [ --zone-id]
 cloudflare zone zone plan show [ --zone-id ]
                                [ --id | -i]
 #global flags       
-                                [ --query | -q ]                           
-                                [ --output |-o ]
-                                [ --help | -h ]
-                                [ --debug ]
+                               [ --query | -q ]                           
+                               [ --output |-o ]
+                               [ --help | -h ]
+                               [ --debug ]
 ```
 
 #### cloudflare zone plan upgrade<a name="cmd_cloudflare_zone_plan_upgrade"></a>

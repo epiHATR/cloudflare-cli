@@ -25,10 +25,10 @@ var planShow = &cobra.Command{
 	Long:  text.PlanDetailsLongText + text.SubCmdHelpText,
 	Run: func(cmd *cobra.Command, args []string) {
 		errText := []string{}
-		if planShowCmdZoneId == "" {
+		if len(planShowCmdZoneId) <= 0 {
 			errText = append(errText, "--zone-id")
 		}
-		if planShowCmdPlanId == "" {
+		if len(planShowCmdPlanId) <= 0 {
 			errText = append(errText, "--id")
 		}
 

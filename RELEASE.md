@@ -20,8 +20,8 @@ Cloudflare API v0.0.4
 - [x] cloudflare zone dns list
 - [x] cloudflare zone dns show
 - [x] cloudflare zone dns add
-- [ ] cloudflare zone dns update
-- [ ] cloudflare zone dns delete
+- [x] cloudflare zone dns update
+- [x] cloudflare zone dns delete
 
 - [x] cloudflare zone plan list
 - [x] cloudflare zone plan show

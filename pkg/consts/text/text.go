@@ -74,3 +74,9 @@ This command requires 'Zone.Write' on your Cloudflare token API configuration pe
 
 var UpdatePlanLongtext = `Update Cloudflare zone's plan
 This command requires 'Billing.Write' on your Cloudflare token API configuration permission`
+
+var ZoneDndDelete = `Delete a DNS record from Cloudflare zone
+This command requires 'DNS.Read' & 'DNS.Write' on your Cloudflare token API configuration permission`
+
+var ZoneDnsUpdate = `Update a DNS record on Cloudflare zone
+This command requires 'DNS.Write' & 'DNS.Write' on your Cloudflare token API configuration permission`
