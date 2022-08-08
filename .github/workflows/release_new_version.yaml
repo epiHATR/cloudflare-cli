@@ -1,0 +1,56 @@
+name: Create Release
+on:
+  workflow_dispatch:
+    inputs:
+      majorNumber:
+        required: true
+        type: choice
+        description: Pre-Release
+        default: no
+        options:
+          - yes
+          - no
+
+jobs:
+  Init:
+    name: Release CICD
+    runs-on: 'ubuntu-latest'    
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Go
+        run: |
+          VERSION="1.18.5"
+          ARCH="amd64"
+          curl -O -L "https://go.dev/dl/go${VERSION}.linux-${ARCH}.tar.gz"
+          sudo tar -C /usr/local -xzf go${VERSION}.linux-${ARCH}.tar.gz
+          echo "export GOPATH=$HOME/go" >> ~/.bash_profile
+          echo "export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin" >> ~/.bash_profile
+          source ~/.bash_profile
+          go version
+
+      - name: Install cobra for Go
+        run: |
+
+      - name: Run Tests
+        run: |
+
+      - name: Go build with version
+        run: |
+          releaseDate=`date -u +%d-%m-%Y`
+          releaseTime=`date -u +%H:%M:%S`
+          build=${{ github.run_number }}
+          version=$(go run -ldflags "-X cloudflare/cmd.build=$build -X 'cloudflare/cmd.releaseDate=$releaseDate $releaseTime'" main.go version -s)
+          echo "::notice title=Version :: ${version}"
+
+          GOOS=linux GOARCH=amd64 go build -ldflags "-X cloudflare/cmd.build=$build -X 'cloudflare/cmd.releaseDate=$releaseDate $releaseTime'" \
+                                                      -o "release/linux-amd64-$version/cloudflare" cloudflare
+          cd release/linux-amd64-$version
+          ./cloudflare version
+        
+      - name: Create Github Tag
+        run: |
+       
+      - name: Create Release with tag
+        run: |
+        
