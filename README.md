@@ -36,8 +36,8 @@ sudo chmod +x /usr/local/bin/cloudflare
 __For MacOS arm64__
 ```
 release_version="v0.0.x"
-curl -OL "https://github.com/epiHATR/cloudflare-cli/releases/download/$release_version/cloudflare-linux-amd64-$release_version"
-sudo mv cloudflare-linux-amd64-$release_version /usr/local/bin/cloudflare
+curl -OL "https://github.com/epiHATR/cloudflare-cli/releases/download/$release_version/cloudflare-linux-arm64-$release_version"
+sudo mv cloudflare-linux-arm64-$release_version /usr/local/bin/cloudflare
 sudo chmod +x /usr/local/bin/cloudflare
 ```
 ### Command Usages <a name="commandusages"></a>
@@ -50,11 +50,13 @@ sudo chmod +x /usr/local/bin/cloudflare
 | [cloudflare zone list](#cmd_cloudflare_zone_list) | list Cloudflare zone in account |
 | [cloudflare zone show](#cmd_cloudflare_zone_show) | show Cloudflare zone common information |
 | cloudflare zone create | create new Cloudflare zone |
-| cloudflare zone pause | pause a cloudflare zone |
+| [cloudflare zone setting pause](#cmd_cloudflare_zone_setting_pause) | pause a cloudflare zone |
+| [cloudflare zone setting unpause](#cmd_cloudflare_zone_setting_unpause) | unpause a cloudflare zone |
+| [cloudflare zone settings set-type](#cmd_cloudflare_zone_setting_set-type) | set Cloudflare zone type (parital, full, delegated)|
+| [cloudflare zone plan list](#cmd_cloudflare_zone_plan_list) | list all Cloudflare plan for zone|
+| [cloudflare zone plan show](#cmd_cloudflare_zone_plan_show) | show a Cloudflare plan details|
+| [cloudflare zone plan upgrade](#cmd_cloudflare_zone_plan_upgrade) | upgrade Cloudflare zone to a specified plan |
 | cloudflare zone delete | delete a Cloudflare zone |
-| cloudflare zone set-type | set Cloudflare zone type (parital, full, delegated)|
-| cloudflare zone set-plan | set Cloudflare zone plan by name or type |
-| cloudflare zone set-under-attack | set Cloudflare zone I'm under attack mode |
 | [cloudflare zone dns list](#cmd_cloudflare_zone_dns_list) | list DNS records on a Cloudflare zone  |
 | [cloudflare zone dns show](#cmd_cloudflare_zone_dns_show) | show a DNS records details of a Cloudflare zone |
 | [cloudflare zone dns add](#cmd_cloudflare_zone_dns_add) | add a DNS records on a Cloudflare zone |
@@ -161,6 +163,87 @@ cloudflare zone dns add [ --zone-id | -i]
                         [ --output |-o ]
                         [ --help | -h ]
                         [ --debug ]
+```
+
+#### cloudflare zone setting pause <a name="cmd_cloudflare_zone_setting_pause"></a>
+<p>Pause a Cloudfalre zone</p>
+
+```bash
+cloudflare zone setting pause [ --zone-id | -i]
+
+#global flags       
+                              [ --query | -q ]                           
+                              [ --output |-o ]
+                              [ --help | -h ]
+                              [ --debug ]
+```
+
+#### cloudflare zone setting unpause<a name="cmd_cloudflare_zone_setting_unpause"></a>
+<p>UnPause a Cloudfalre zone</p>
+
+```bash
+cloudflare zone setting unpause [ --zone-id | -i]
+
+#global flags       
+                                [ --query | -q ]                           
+                                [ --output |-o ]
+                                [ --help | -h ]
+                                [ --debug ]
+```
+
+#### cloudflare zone setting set-type<a name="cmd_cloudflare_zone_setting_set-type"></a>
+<p>Change Cloudflare zone type (full, partial)</p>
+
+```bash
+cloudflare zone setting set-type [ --zone-id]
+                                 [ --type| -t ]
+
+#global flags       
+                                 [ --query | -q ]                           
+                                 [ --output |-o ]
+                                 [ --help | -h ]
+                                 [ --debug ]
+```
+
+#### cloudflare zone plan list<a name="cmd_cloudflare_zone_plan_list"></a>
+<p>List all Cloudflare zone's plan</p>
+
+```bash
+cloudflare zone zone plan list [ --zone-id]
+                               [ --all-available|-a ]
+                               [ --rate-plan-only ]
+#global flags       
+                                [ --query | -q ]                           
+                                [ --output |-o ]
+                                [ --help | -h ]
+                                [ --debug ]
+```
+
+#### cloudflare zone plan show<a name="cmd_cloudflare_zone_plan_show"></a>
+<p>Show details of a zone's plan</p>
+
+```bash
+cloudflare zone zone plan show [ --zone-id ]
+                               [ --id | -i]
+#global flags       
+                                [ --query | -q ]                           
+                                [ --output |-o ]
+                                [ --help | -h ]
+                                [ --debug ]
+```
+
+#### cloudflare zone plan upgrade<a name="cmd_cloudflare_zone_plan_upgrade"></a>
+<p>Upgrade a Clouddflare zone plan</p>
+
+```bash
+cloudflare zone zone plan upgrade [ --zone-id ]
+                                  [ --plan-id | -i]
+                                  [ --plan-name | -n]
+#global flags       
+                                [ --query | -q ]                           
+                                [ --output |-o ]
+                                [ --help | -h ]
+                                [ --debug ]
 ```
 
 ## Development <a name="developments"></a>

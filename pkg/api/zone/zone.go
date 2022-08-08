@@ -33,9 +33,9 @@ func GetAllZone(pageNumber int, account string, searchKey string) (result respon
 
 }
 
-func GetZoneById(id string) response.ZoneDetailResponse {
-	log.Println("get zone by ID", id)
-	queryUrl := endpoint.ApiEndPoint + endpoint.ZoneDetailEndPoint + "/" + id
+func GetZoneById(zoneId string) response.ZoneDetailResponse {
+	log.Println("get zone by ID", zoneId)
+	queryUrl := endpoint.ApiEndPoint + endpoint.ZoneDetailEndPoint + "/" + zoneId
 	respData := request.CreateRequest(queryUrl, "GET", "")
 
 	resObj := response.ZoneDetailResponse{}

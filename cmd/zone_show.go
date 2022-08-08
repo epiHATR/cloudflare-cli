@@ -15,8 +15,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var zoneShowFlagZoneName = ""
-var zoneShowFlagZoneId = ""
+var zoneShowCmdZoneName = ""
+var zoneShowCmdZoneId = ""
 
 var showCmd = &cobra.Command{
 	Use:   "show",
@@ -24,9 +24,9 @@ var showCmd = &cobra.Command{
 	Long:  text.ZoneShowCmdLongText + text.SubCmdHelpText,
 	Run: func(cmd *cobra.Command, args []string) {
 		//run function based on input flag'
-		if zoneShowFlagZoneId != "" {
+		if zoneShowCmdZoneId != "" {
 			res := response.ZoneDetailResponse{}
-			res = zone.GetZoneById(zoneShowFlagZoneId)
+			res = zone.GetZoneById(zoneShowCmdZoneId)
 			//manipulate response
 			if !res.Success {
 				fmt.Fprintln(os.Stderr, "Error: failed to get Cloudflare zone details. The error is", res.Errors[0].Message)
@@ -35,9 +35,9 @@ var showCmd = &cobra.Command{
 				output.PrintOut(res.Result, flagQuery, flagOutput)
 			}
 
-		} else if zoneShowFlagZoneName != "" {
+		} else if zoneShowCmdZoneName != "" {
 			res := response.ZoneListResponse{}
-			res = zone.GetZoneByName(zoneShowFlagZoneName)
+			res = zone.GetZoneByName(zoneShowCmdZoneName)
 			//manipulate response
 			if !res.Success {
 				fmt.Fprintln(os.Stderr, "Error: failed to get Cloudflare zone details. The error is", res.Errors[0].Message)
@@ -56,6 +56,6 @@ var showCmd = &cobra.Command{
 
 func init() {
 	zoneCmd.AddCommand(showCmd)
-	showCmd.Flags().StringVarP(&zoneShowFlagZoneName, "name", "n", "", "name of Cloudflare zone")
-	showCmd.Flags().StringVarP(&zoneShowFlagZoneId, "id", "i", "", "id of Cloudflare zone")
+	showCmd.Flags().StringVarP(&zoneShowCmdZoneName, "name", "n", "", "name of Cloudflare zone")
+	showCmd.Flags().StringVarP(&zoneShowCmdZoneId, "id", "i", "", "id of Cloudflare zone")
 }

@@ -15,8 +15,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var dnsAddFlagZoneId = ""
-var dnsAddFlagData = ""
+var dnsAddCmdZoneId = ""
+var dnsAddCmdData = ""
 
 // dnsCmd represents the dns command
 var dnsAdd = &cobra.Command{
@@ -25,21 +25,21 @@ var dnsAdd = &cobra.Command{
 	Long:  text.ZoneDNSAddCmdLongText + text.SubCmdHelpText,
 	Run: func(cmd *cobra.Command, args []string) {
 		errText := []string{}
-		if dnsAddFlagZoneId == "" {
+		if dnsAddCmdZoneId == "" {
 			errText = append(errText, "--zone-id")
 		}
 
-		if dnsAddFlagData == "" {
+		if dnsAddCmdData == "" {
 			errText = append(errText, "--data|-d")
 		}
 
-		if dnsAddFlagData == "" || dnsAddFlagZoneId == "" {
+		if len(errText) > 0 {
 			fmt.Fprintln(os.Stderr, "Error: Missing mandatory inputs, following flags are required: ", strings.Join(errText, ", "))
 			fmt.Fprintln(os.Stderr, text.SubCmdHelpText)
 			os.Exit(1)
 		}
 
-		response := dns.AddDNSRecord(dnsAddFlagZoneId, dnsAddFlagData)
+		response := dns.AddDNSRecord(dnsAddCmdZoneId, dnsAddCmdData)
 		if !response.Success {
 			fmt.Fprintln(os.Stderr, "Error: failed to add DNS record. The error is", response.Errors[0].Message)
 			os.Exit(1)
@@ -52,6 +52,6 @@ var dnsAdd = &cobra.Command{
 
 func init() {
 	dnsCmd.AddCommand(dnsAdd)
-	dnsAdd.Flags().StringVarP(&dnsAddFlagZoneId, "zone-id", "", "", "cloudlfare zone ID")
-	dnsAdd.Flags().StringVarP(&dnsAddFlagData, "data", "d", "", "JSON format of a DNS record.")
+	dnsAdd.Flags().StringVarP(&dnsAddCmdZoneId, "zone-id", "", "", "cloudlfare zone ID")
+	dnsAdd.Flags().StringVarP(&dnsAddCmdData, "data", "d", "", "JSON format of a DNS record.")
 }

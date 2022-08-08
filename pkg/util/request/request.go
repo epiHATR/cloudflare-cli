@@ -12,9 +12,9 @@ import (
 )
 
 func CreateRequest(url string, method string, bodyData string) []byte {
-	log.Println("query url: ", url)
-	log.Println("method: ", method)
-	log.Println("body: ", bodyData)
+	log.Println("URI: ", url)
+	log.Println("METHOD: ", method)
+	log.Println("BODY: ", bodyData)
 
 	var jsonStr = []byte(bodyData)
 	req, err := http.NewRequest(method, url, bytes.NewBuffer(jsonStr))

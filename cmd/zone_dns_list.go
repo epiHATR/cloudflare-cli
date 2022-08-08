@@ -14,8 +14,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var dnsListFlagZoneId = ""
-var dnsListFlagRecordType = ""
+var dnsListCmdZoneId = ""
+var dnsListCmdRecordType = ""
 
 // dnsCmd represents the dns command
 var dnsListCmd = &cobra.Command{
@@ -23,12 +23,12 @@ var dnsListCmd = &cobra.Command{
 	Short: "list all DNS records in a Cloudflare zone",
 	Long:  text.ZoneDNSListCmdLongText + text.SubCmdHelpText,
 	Run: func(cmd *cobra.Command, args []string) {
-		if dnsListFlagZoneId == "" {
+		if dnsListCmdZoneId == "" {
 			fmt.Fprintln(os.Stderr, "Error: Please specify a Cloudflare zone Id to retrieve data.")
 			fmt.Fprintln(os.Stderr, text.SubCmdHelpText)
 			os.Exit(1)
 		}
-		response := dns.GetZoneDns(dnsListFlagZoneId, dnsListFlagRecordType)
+		response := dns.GetZoneDns(dnsListCmdZoneId, dnsListCmdRecordType)
 		if !response.Success {
 			fmt.Fprintln(os.Stderr, "Error:", response.Errors[0].Message)
 			os.Exit(1)
@@ -39,6 +39,6 @@ var dnsListCmd = &cobra.Command{
 
 func init() {
 	dnsCmd.AddCommand(dnsListCmd)
-	dnsListCmd.Flags().StringVarP(&dnsListFlagZoneId, "zone-id", "", "", "cloudlfare zone ID")
-	dnsListCmd.Flags().StringVarP(&dnsListFlagRecordType, "type", "t", "", "type of record need to be filtered (CNAME, NS, TXT, ...)")
+	dnsListCmd.Flags().StringVarP(&dnsListCmdZoneId, "zone-id", "", "", "cloudlfare zone ID")
+	dnsListCmd.Flags().StringVarP(&dnsListCmdRecordType, "type", "t", "", "type of record need to be filtered (CNAME, NS, TXT, ...)")
 }

@@ -57,3 +57,20 @@ var ZoneDNSAddCmdLongText = `Add new DNS record to Cloudflare zone.
 This command requires 'DNS.Read' & 'DNS.Create' on your Cloudflare token API configuration permission.
 See Cloudflare API documentation at https://api.cloudflare.com/#dns-records-for-a-zone-create-dns-record
 `
+var ZoneSettingLongText = `Manage your Cloudaflare zone's settings
+This command requires 'Zone.Read' & 'DNS.Create' on your Cloudflare token API configuration permission`
+
+var PlancmdLongText = `Manage Cloudflare zone's plan
+This command requires 'Billing.Read' on your Cloudflare token API configuration permission`
+
+var AvailablePlanLongText = `List available plans the zone can subscribe to
+This command requires 'Billing.Read' on your Cloudflare token API configuration permission`
+
+var PlanDetailsLongText = `Show Cloudflare plan details
+This command requires 'Billing.Read' on your Cloudflare token API configuration permission`
+
+var SetTypeLongText = `Change cloudflare zone type
+This command requires 'Zone.Write' on your Cloudflare token API configuration permission`
+
+var UpdatePlanLongtext = `Update Cloudflare zone's plan
+This command requires 'Billing.Write' on your Cloudflare token API configuration permission`
