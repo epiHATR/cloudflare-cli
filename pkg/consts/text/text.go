@@ -83,3 +83,7 @@ This command requires 'DNS.Write' & 'DNS.Write' on your Cloudflare token API con
 
 var ZoneCreateLongText = `Create a new Cloudflare zone
 This command requires 'Zone.Read' & 'Zone.Write' on your Cloudflare token API configuration permission`
+
+var DeleteZoneLongText = `Delete a Cloudflare zone.
+Zone should be changed to Free Website type before removed from Cloudflare.
+This command requires 'Zone.Read' & 'Zone.Write' on your Cloudflare token API configuration permission`

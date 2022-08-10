@@ -80,3 +80,20 @@ func CreateNewZone(name string, accountId string, zoneType string, jump_start bo
 	}
 	return resObj
 }
+
+func DeleteAZone(zoneId string) response.ZoneDetailResponse {
+	if len(zoneId) <= 0 || len(zoneId) <= 0 {
+		os.Exit(1)
+	}
+	log.Println("deleting zone ", zoneId)
+	queryUrl := endpoint.ApiEndPoint + endpoint.DeleteZoneEndpoint + "/" + zoneId
+	respData := request.CreateRequest(queryUrl, "DELETE", "")
+
+	resObj := response.ZoneDetailResponse{}
+	err := json.Unmarshal(respData, &resObj)
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+	return resObj
+}
