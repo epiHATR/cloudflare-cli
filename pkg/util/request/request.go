@@ -12,6 +12,11 @@ import (
 )
 
 func CreateRequest(url string, method string, bodyData string) []byte {
+	if len(url) <= 0 || len(method) <= 0 {
+		fmt.Fprintf(os.Stderr, "Error: requst url is empty")
+		os.Exit(1)
+	}
+
 	log.Println("URI: ", url)
 	log.Println("METHOD: ", method)
 	log.Println("BODY: ", bodyData)
