@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 func ListAllAvailablePlan(zoneId string) response.ZonePlanResponse {
@@ -63,4 +64,26 @@ func SetPlan(zoneId string, planJson string) response.ZoneDetailResponse {
 		os.Exit(1)
 	}
 	return resObj
+}
+
+func GetZonePlanId(zoneId string, planName string) string {
+	log.Println("getting all available plan for zone", zoneId)
+	queryUrl := fmt.Sprintf(endpoint.ApiEndPoint+endpoint.AvailablePlanEndpoint, zoneId)
+
+	respData := request.CreateRequest(queryUrl, "GET", "")
+	resObj := response.ZonePlanResponse{}
+	err := json.Unmarshal(respData, &resObj)
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+	id := ""
+	for _, planItem := range resObj.Result {
+		log.Println(planItem.Name)
+		if strings.ToLower(planItem.Legacy_id) == strings.ToLower(planName) {
+			id = planItem.Id
+			break
+		}
+	}
+	return id
 }

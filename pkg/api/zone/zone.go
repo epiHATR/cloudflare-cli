@@ -5,6 +5,7 @@ import (
 	"cloudflare/pkg/model/response"
 	"cloudflare/pkg/util/request"
 	"encoding/json"
+	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -50,11 +51,28 @@ func GetZoneById(zoneId string) response.ZoneDetailResponse {
 func GetZoneByName(name string) response.ZoneListResponse {
 	log.Println("get zone by name", name)
 	queryUrl := endpoint.ApiEndPoint + endpoint.ZoneDetailEndPoint + "?name=" + name
-
-	log.Println("the request url: ", queryUrl)
 	respData := request.CreateRequest(queryUrl, "GET", "")
 
 	resObj := response.ZoneListResponse{}
+	err := json.Unmarshal(respData, &resObj)
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+	return resObj
+}
+
+func CreateNewZone(name string, accountId string, zoneType string, jump_start bool) response.ZoneDetailResponse {
+	if len(name) <= 0 || len(accountId) <= 0 {
+		os.Exit(1)
+	}
+	log.Println("creating zone ", name, "in account", accountId)
+	queryUrl := endpoint.ApiEndPoint + endpoint.CreateZoneEndpoint
+	jsonBody := fmt.Sprintf(`{ "name":"%s","account": { "id":"%s"}, "type": "%s", "jump_start": %v }`, name, accountId, zoneType, jump_start)
+	log.Println(jsonBody)
+	respData := request.CreateRequest(queryUrl, "POST", jsonBody)
+
+	resObj := response.ZoneDetailResponse{}
 	err := json.Unmarshal(respData, &resObj)
 	if err != nil {
 		log.Fatal(err)

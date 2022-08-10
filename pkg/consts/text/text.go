@@ -80,3 +80,6 @@ This command requires 'DNS.Read' & 'DNS.Write' on your Cloudflare token API conf
 
 var ZoneDnsUpdate = `Update a DNS record on Cloudflare zone
 This command requires 'DNS.Write' & 'DNS.Write' on your Cloudflare token API configuration permission`
+
+var ZoneCreateLongText = `Create a new Cloudflare zone
+This command requires 'Zone.Read' & 'Zone.Write' on your Cloudflare token API configuration permission`

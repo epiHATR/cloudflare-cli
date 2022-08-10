@@ -47,32 +47,13 @@ var upgradeCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		id := ""
-
-		if len(updatePlanCmdPlanId) > 0 {
-			id = updatePlanCmdPlanId
-		} else {
-			res := plan.ListAllAvailablePlan(updatePlanCmdZoneId)
-			if !res.Success {
-				fmt.Fprintln(os.Stderr, "Error: failed to get all available plans. The error is", res.Errors[0].Message)
-				os.Exit(1)
-			} else {
-				log.Println("found", len(res.Result), "plan")
-				for _, planItem := range res.Result {
-					log.Println(planItem.Name)
-					if strings.ToLower(planItem.Legacy_id) == strings.ToLower(updatePlanCmdPlanName) {
-						id = planItem.Id
-						break
-					}
-				}
-			}
-			if len(id) <= 0 {
-				fmt.Fprintln(os.Stderr, "Error: no available plan called", updatePlanCmdPlanName, text.SubCmdHelpText)
-				os.Exit(1)
-			}
+		planId := plan.GetZonePlanId(updatePlanCmdZoneId, updatePlanCmdPlanName)
+		if len(planId) <= 0 {
+			fmt.Fprintln(os.Stderr, "Error: Failed to get plan for zone", updatePlanCmdZoneId, "details.")
+			os.Exit(1)
 		}
 
-		res := plan.SetPlan(updatePlanCmdZoneId, fmt.Sprintf(jsonBody.PlanType, id))
+		res := plan.SetPlan(updatePlanCmdZoneId, fmt.Sprintf(jsonBody.PlanType, planId))
 		if !res.Success {
 			fmt.Fprintln(os.Stderr, "Error: failed to upgrade plan for zone. The error is", res.Errors[0].Message)
 			os.Exit(1)
@@ -85,5 +66,5 @@ func init() {
 	zonePlanCmd.AddCommand(upgradeCmd)
 	upgradeCmd.Flags().StringVarP(&updatePlanCmdZoneId, "zone-id", "", "", "cloudlfare zone ID")
 	upgradeCmd.Flags().StringVarP(&updatePlanCmdPlanId, "plan-id", "i", "", "plan ID")
-	upgradeCmd.Flags().StringVarP(&updatePlanCmdPlanName, "plan-name", "n", "", "plan ID")
+	upgradeCmd.Flags().StringVarP(&updatePlanCmdPlanName, "plan-name", "n", "", "plan name")
 }
