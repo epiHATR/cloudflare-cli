@@ -7,7 +7,7 @@ var TokenVerifyEndPoint = "/user/tokens/verify"
 var EmailKeyVerifyEndPoint = "/user"
 
 // zone endpoints
-var ZoneListEndPoint = "/zones?per_page=50&direction=desc&match=all"
+var ZoneListEndPoint = "/zones?per_page=200&direction=desc&match=all"
 var ZoneDetailEndPoint = "/zones"
 var CreateZoneEndpoint = "/zones"
 var DeleteZoneEndpoint = "/zones"

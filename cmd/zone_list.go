@@ -8,6 +8,7 @@ import (
 	"bytes"
 	"cloudflare/pkg/api/zone"
 	"cloudflare/pkg/consts/text"
+	"cloudflare/pkg/model/response"
 	"cloudflare/pkg/util/output"
 	"encoding/json"
 	"fmt"
@@ -25,8 +26,8 @@ func PrettyString(str string) (string, error) {
 	return prettyJSON.String(), nil
 }
 
-var zoneListFlagAccountId = ""
-var zoneListFlagAccountName = ""
+var listCmdAccountId = ""
+var listCmdAccountName = ""
 
 // listCmd represents the list command
 var listCmd = &cobra.Command{
@@ -36,17 +37,37 @@ var listCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if len(args) == 0 {
-			response := zone.GetAllZone(1, zoneListFlagAccountId, zoneListFlagAccountName)
+			result := []response.Result{}
+
+			response := zone.GetAllZone(1, listCmdAccountId, listCmdAccountName)
 			if !response.Success {
 				fmt.Fprintln(os.Stderr, "Error: failed to list Cloudflare zones. The error is", response.Errors[0].Message)
 				fmt.Fprintln(os.Stderr, text.SubCmdHelpText)
 				os.Exit(1)
 			} else {
 				log.Println("number of page: ", response.Result_Info.Total_pages)
-				if len(flagQuery) <= 0 {
-					flagQuery = "[].{id:id, name:name, status:status}"
+				result = append(result, response.Result...)
+				if response.Result_Info.Total_pages > 2 && response.Result_Info.Total_pages <= 10 {
+					for i := 2; i < response.Result_Info.Total_pages; i++ {
+						response := zone.GetAllZone(i, listCmdAccountId, listCmdAccountName)
+						if !response.Success {
+							fmt.Fprintln(os.Stderr, "Error: failed to list Cloudflare zones. The error is", response.Errors[0].Message)
+							fmt.Fprintln(os.Stderr, text.SubCmdHelpText)
+							os.Exit(1)
+						} else {
+							result = append(result, response.Result...)
+						}
+					}
 				}
-				output.PrintOut(response.Result, flagQuery, flagOutput)
+
+				if len(flagQuery) <= 0 {
+					flagQuery = "[].{id:id, name:name, status:status, account:{id: account.id, name: account.name}}"
+				}
+				output.PrintOut(result, flagQuery, flagOutput)
+				if response.Result_Info.Total_pages > 10 {
+					fmt.Fprintf(os.Stdin, fmt.Sprintf("Too many result returned, displaying %d/%d (page %d/%d)", response.Result_Info.Count, response.Result_Info.Total_count, response.Result_Info.Page, response.Result_Info.Total_pages))
+					fmt.Fprintf(os.Stdin, fmt.Sprintln())
+				}
 			}
 		}
 	},
@@ -54,6 +75,7 @@ var listCmd = &cobra.Command{
 
 func init() {
 	zoneCmd.AddCommand(listCmd)
-	listCmd.Flags().StringVarP(&zoneListFlagAccountId, "account-id", "", "", "cloudflare account id (organization id)")
-	listCmd.Flags().StringVarP(&zoneListFlagAccountName, "account-name", "n", "", "specify zone name to search")
+	listCmd.Flags().StringVarP(&listCmdAccountId, "account-id", "", "", "cloudflare account id (organization id)")
+	listCmd.Flags().StringVarP(&listCmdAccountName, "account-name", "n", "", "specify zone name to search")
+
 }

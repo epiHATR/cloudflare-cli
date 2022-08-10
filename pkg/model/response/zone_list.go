@@ -52,7 +52,7 @@ type plan_pending struct {
 	Can_subscribe bool   `json:"can_subscribe"`
 }
 
-type result struct {
+type Result struct {
 	Id                    string       `json:"id"`
 	Name                  string       `json:"name"`
 	Status                string       `json:"status"`
@@ -82,6 +82,6 @@ type ZoneListResponse struct {
 	Success     bool        `json:"success"`
 	Messages    []message   `json:"messages"`
 	Errors      []error     `json:"errors"`
-	Result      []result    `json:"result"`
+	Result      []Result    `json:"result"`
 	Result_Info result_Info `json:"result_info"`
 }

@@ -19,7 +19,7 @@ Communicating with Cloudflare API through command line interface
 Download latest binary from github at 
 
 ### Downloads <a name="downloads"></a>
-Cloudflare CLI has been released, version v0.1.4x is now available for download at [Release v0.1.44](https://github.com/epiHATR/cloudflare-cli/releases)
+Cloudflare CLI has been released, version v0.1.4x is now available for download at [Release v0.1.4x](https://github.com/epiHATR/cloudflare-cli/releases)
 
 Download one of following release zip file:
 ```bash
@@ -103,7 +103,7 @@ cloudflare version [ --short | -s ]
 
 ```bash
 cloudflare zone list [ --account-id ]
-                     [ --name | -n ]
+                     [ --account-name | -n ]
 
 #global flags       
                     [ --query | -q ]                           
