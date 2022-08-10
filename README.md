@@ -19,26 +19,29 @@ Communicating with Cloudflare API through command line interface
 Download latest binary from github at 
 
 ### Downloads <a name="downloads"></a>
-__For Windows x64__
+Cloudflare CLI has been released, version v0.1.42 is now available for download at [Release v0.1.42](https://github.com/epiHATR/cloudflare-cli/releases/tag/v0.1.42)
 
-Download latest build for Windows amd64 at this addess [cloudflare-windows-amd64-{release version}.zip](https://github.com/epiHATR/cloudflare-cli/releases)
-Extract zip file, rename to `cloudflare.exe` and copy it to `\Windows\system32\cloudflare`
-set PATH to `C:\Windows\system32\cloudflare`
-
-__For Linux amd64__
+Download one of following release zip file:
+```bash
+https://github.com/epiHATR/cloudflare-cli/releases/download/v0.1.42/darwin-arm64-v0.1.42.tar.gz
+https://github.com/epiHATR/cloudflare-cli/releases/download/v0.1.42/linux-amd64-v0.1.42.tar.gz 
+https://github.com/epiHATR/cloudflare-cli/releases/download/v0.1.42/windows-amd64-v0.1.42.zip
 ```
-release_version="v0.0.x"
-curl -OL "https://github.com/epiHATR/cloudflare-cli/releases/download/$release_version/cloudflare-linux-amd64-$release_version"
-sudo mv cloudflare-linux-amd64-$release_version /usr/local/bin/cloudflare
+### Installation
+##### ubuntu/rhel
+```
+tar -xf linux-amd64-v0.1.42.tar.gz -C /usr/local/bin
 sudo chmod +x /usr/local/bin/cloudflare
 ```
-
-__For MacOS arm64__
+##### darwin/macos
 ```
-release_version="v0.0.x"
-curl -OL "https://github.com/epiHATR/cloudflare-cli/releases/download/$release_version/cloudflare-linux-arm64-$release_version"
-sudo mv cloudflare-linux-arm64-$release_version /usr/local/bin/cloudflare
+tar -xf darwin-arm64-v0.1.42.tar.gz -C /usr/local/bin
 sudo chmod +x /usr/local/bin/cloudflare
+```
+##### windows x64
+```
+extract windows-amd64-v0.1.42.zip to a folder
+.\cloudflare.exe --help
 ```
 ### Command Usages <a name="commandusages"></a>
 
