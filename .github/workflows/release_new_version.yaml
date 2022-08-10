@@ -35,6 +35,7 @@ jobs:
 
       - name: Run Tests
         run: |
+          go test ./...
 
       - name: Build with version
         id: version
