@@ -1,0 +1,31 @@
+name: Unit Test
+on:
+  push:
+    paths:
+      - "**/pkg/**"
+  workflow_dispatch:
+jobs:
+  Test:
+    name: Run Unit Test
+    runs-on: 'ubuntu-latest'    
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Fetch all tags
+        run: |
+          git fetch --tags
+          git fetch --prune --unshallow
+      - name: Install Go
+        run: |
+          VERSION="1.18.5"
+          ARCH="amd64"
+          curl -O -L "https://go.dev/dl/go${VERSION}.linux-${ARCH}.tar.gz"
+          sudo tar -C /usr/local -xzf go${VERSION}.linux-${ARCH}.tar.gz
+          echo "export GOPATH=$HOME/go" >> ~/.bash_profile
+          echo "export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin" >> ~/.bash_profile
+          source ~/.bash_profile
+          go version
+
+      - name: Run All Tests
+        run: |
+          go test ./...

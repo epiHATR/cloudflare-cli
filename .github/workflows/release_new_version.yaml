@@ -12,7 +12,7 @@ on:
           - 'yes'
 
 jobs:
-  Init:
+  Build:
     name: Release CICD
     runs-on: 'ubuntu-latest'    
     steps:

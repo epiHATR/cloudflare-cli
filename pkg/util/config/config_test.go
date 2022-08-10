@@ -16,24 +16,25 @@ func TestSetToken(t *testing.T) {
 	}
 }
 
+type setEmailKeyTest struct {
+	arg1     string
+	arg2     string
+	expected bool
+}
+
+var setEmailKeyTests = []setEmailKeyTest{
+	{"", "", false},
+	{"", "key", false},
+	{"email", "key", false},
+	{"email", "", false},
+	{"email@mail.com", "", false},
+	{"email@mail.com", "key", true},
+}
+
 func TestSetEmailKey(t *testing.T) {
-	emptyEmailKey := SetEmailKey("", "")
-	if emptyEmailKey != false {
-		t.Errorf("output expect false, got %v", emptyEmailKey)
-	}
-
-	emptyEmail := SetEmailKey("", "key")
-	if emptyEmail != false {
-		t.Errorf("output expect false, got %v", emptyEmail)
-	}
-
-	emptyKey := SetEmailKey("email", "")
-	if emptyKey != false {
-		t.Errorf("output expect false, got %v", emptyEmail)
-	}
-
-	validKeyEmail := SetEmailKey("email", "key")
-	if validKeyEmail != true {
-		t.Errorf("output expect true, got %v", emptyEmail)
+	for _, test := range setEmailKeyTests {
+		if output := SetEmailKey(test.arg1, test.arg2); output != test.expected {
+			t.Errorf("expected: %v | got:  %v", test.expected, output)
+		}
 	}
 }

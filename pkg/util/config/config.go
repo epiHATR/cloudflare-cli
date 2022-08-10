@@ -73,7 +73,8 @@ func SetToken(token string) (res bool) {
 
 func SetEmailKey(email string, key string) (res bool) {
 	result := false
-	if len(email) > 0 && len(key) > 0 {
+
+	if len(email) > 0 && len(key) > 0 && strings.Contains(email, "@") == true {
 		viper.Set("auth.email", email)
 		viper.Set("auth.key", key)
 		viper.Set("auth.token", "")
