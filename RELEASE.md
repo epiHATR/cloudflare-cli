@@ -1,7 +1,7 @@
 ## Release inforation
 
 ### version
-Cloudflare API v0.0.4
+Cloudflare API v0.1.45
 
 ### features history
 
@@ -9,8 +9,10 @@ Cloudflare API v0.0.4
 - [x] cloudflare version
 - [x] cloudflare login
 
+- [x] cloudflare zone create
 - [x] cloudflare zone list
 - [x] cloudflare zone show
+- [x] cloudflare zone delete
 
 - [x] cloudflare zone setting pause
 - [x] cloudflare zone setting unpause

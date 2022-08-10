@@ -19,28 +19,28 @@ Communicating with Cloudflare API through command line interface
 Download latest binary from github at 
 
 ### Downloads <a name="downloads"></a>
-Cloudflare CLI has been released, version v0.1.42 is now available for download at [Release v0.1.42](https://github.com/epiHATR/cloudflare-cli/releases/tag/v0.1.42)
+Cloudflare CLI has been released, version v0.1.4x is now available for download at [Release v0.1.44](https://github.com/epiHATR/cloudflare-cli/releases)
 
 Download one of following release zip file:
 ```bash
-https://github.com/epiHATR/cloudflare-cli/releases/download/v0.1.42/darwin-arm64-v0.1.42.tar.gz
-https://github.com/epiHATR/cloudflare-cli/releases/download/v0.1.42/linux-amd64-v0.1.42.tar.gz 
-https://github.com/epiHATR/cloudflare-cli/releases/download/v0.1.42/windows-amd64-v0.1.42.zip
+https://github.com/epiHATR/cloudflare-cli/releases/download/v0.1.43/darwin-arm64-v0.x.x.tar.gz
+https://github.com/epiHATR/cloudflare-cli/releases/download/v0.1.43/linux-amd64-v0.x.x.tar.gz 
+https://github.com/epiHATR/cloudflare-cli/releases/download/v0.1.43/windows-amd64-v0.x.x.zip
 ```
 ### Installation
 ##### ubuntu/rhel
 ```
-tar -xf linux-amd64-v0.1.42.tar.gz -C /usr/local/bin
+tar -xf linux-amd64-v0.x.x.tar.gz -C /usr/local/bin
 sudo chmod +x /usr/local/bin/cloudflare
 ```
 ##### darwin/macos
 ```
-tar -xf darwin-arm64-v0.1.42.tar.gz -C /usr/local/bin
+tar -xf darwin-arm64-v0.x.x.tar.gz -C /usr/local/bin
 sudo chmod +x /usr/local/bin/cloudflare
 ```
 ##### windows x64
 ```
-extract windows-amd64-v0.1.42.zip to a folder
+extract windows-amd64-v0.x.x.zip to a folder
 .\cloudflare.exe --help
 ```
 ### Command Usages <a name="commandusages"></a>
@@ -52,18 +52,18 @@ extract windows-amd64-v0.1.42.zip to a folder
 | [cloudflare login](#cmd_cloudflare_login)               | login into Cloudflare API                           |
 | [cloudflare zone list](#cmd_cloudflare_zone_list) | list Cloudflare zone in account |
 | [cloudflare zone show](#cmd_cloudflare_zone_show) | show Cloudflare zone common information |
-| cloudflare zone create | create new Cloudflare zone |
+| [cloudflare zone create](#cmd_cloudflare_zone_create) | create new Cloudflare zone |
+| [cloudflare zone delete](#cmd_cloudflare_zone_delete) | delete a Cloudflare zone |
 | [cloudflare zone setting pause](#cmd_cloudflare_zone_setting_pause) | pause a cloudflare zone |
 | [cloudflare zone setting unpause](#cmd_cloudflare_zone_setting_unpause) | unpause a cloudflare zone |
 | [cloudflare zone settings set-type](#cmd_cloudflare_zone_setting_set-type) | set Cloudflare zone type (parital, full, delegated)|
 | [cloudflare zone plan list](#cmd_cloudflare_zone_plan_list) | list all Cloudflare plan for zone|
 | [cloudflare zone plan show](#cmd_cloudflare_zone_plan_show) | show a Cloudflare plan details|
 | [cloudflare zone plan upgrade](#cmd_cloudflare_zone_plan_upgrade) | upgrade Cloudflare zone to a specified plan |
-| cloudflare zone delete | delete a Cloudflare zone |
 | [cloudflare zone dns list](#cmd_cloudflare_zone_dns_list) | list DNS records on a Cloudflare zone  |
-| [cloudflare zone dns show](#cmd_cloudflare_zone_dns_show) | show a DNS records details of a Cloudflare zone |
 | [cloudflare zone dns add](#cmd_cloudflare_zone_dns_add) | add a DNS records on a Cloudflare zone |
 | [cloudflare zone dns update](#cmd_cloudflare_zone_dns_update) | change/update DNS records value on Cloudflare zone |
+| [cloudflare zone dns show](#cmd_cloudflare_zone_dns_show) | show a DNS records details of a Cloudflare zone |
 | [cloudflare zone dns delete](#cmd_cloudflare_zone_dns_delete)| delete a DNS records on a Cloudflare zone |
 
 #### cloudflare <a name="cmd_cloudflare"></a>
@@ -110,6 +110,34 @@ cloudflare zone list [ --account-id ]
                     [ --output |-o ]
                     [ --help | -h ]
                     [ --debug ]
+```
+#### cloudflare zone create<a name="cmd_cloudflare_zone_create"></a>
+<p>Create a Cloudflare zone under account</p>
+
+```bash
+cloudflare zone create [ --name | -n ]
+                       [ --account-id ]
+                       [ --type | -t ]
+                       [ --plan-name ]
+                       [--fetch-existing-dns]
+#global flags       
+                       [ --query | -q ]                           
+                       [ --output |-o ]
+                       [ --help | -h ]
+                       [ --debug ]
+```
+
+#### cloudflare zone delete<a name="cmd_cloudflare_zone_delete"></a>
+<p>Delete a Cloudflare zone under account</p>
+
+```bash
+cloudflare zone delete [ --zone-id ]
+                       [ --force | -f ]
+#global flags       
+                       [ --query | -q ]                           
+                       [ --output |-o ]
+                       [ --help | -h ]
+                       [ --debug ]
 ```
 
 #### cloudflare zone show<a name="cmd_cloudflare_zone_show"></a>
