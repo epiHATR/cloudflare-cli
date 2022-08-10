@@ -1,5 +1,12 @@
 # cloudflare-cli
-Communicating with Cloudflare API through command line interface
+##### Communicating with Cloudflare API through command line interface
+
+![latest release](https://img.shields.io/github/v/release/epiHATR/cloudflare-cli)
+![go version](https://img.shields.io/github/go-mod/go-version/epiHATR/cloudflare-cli)
+![download](https://img.shields.io/github/downloads/epiHATR/cloudflare-cli/total)
+![supports](https://img.shields.io/badge/supports-windows%2C%20macos%2C%20linux-green)
+![issues](https://img.shields.io/github/issues/epiHATR/cloudflare-cli?color=%23CC0058)
+![license](https://img.shields.io/github/license/epiHATR/cloudflare-cli?color=93BB29&logoColor=green)
 
 # Table of Contents
 1. [Introduction](#introductions)
