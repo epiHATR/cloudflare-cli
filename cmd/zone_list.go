@@ -43,6 +43,9 @@ var listCmd = &cobra.Command{
 				os.Exit(1)
 			} else {
 				log.Println("number of page: ", response.Result_Info.Total_pages)
+				if len(flagQuery) <= 0 {
+					flagQuery = "[].{id:id, name:name, status:status}"
+				}
 				output.PrintOut(response.Result, flagQuery, flagOutput)
 			}
 		}
