@@ -53,7 +53,6 @@ jobs:
           export GOPATH=$HOME/go
           export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
           source ~/.bashrc
-          go version
 
           previousTag=$(git tag --sort=committerdate | tail -1)
           build=${{ github.run_number }}
