@@ -12,9 +12,9 @@ import (
 	"cloudflare/pkg/util/output"
 	"encoding/json"
 	"fmt"
-	"log"
 	"os"
 
+	"github.com/schollz/progressbar/v3"
 	"github.com/spf13/cobra"
 )
 
@@ -40,22 +40,25 @@ var listCmd = &cobra.Command{
 			result := []response.Result{}
 
 			response := zone.GetAllZone(1, listCmdAccountId, listCmdAccountName)
+			bar := progressbar.Default(int64(response.Result_Info.Total_pages))
 			if !response.Success {
 				fmt.Fprintln(os.Stderr, "Error: failed to list Cloudflare zones. The error is", response.Errors[0].Message)
 				fmt.Fprintln(os.Stderr, text.SubCmdHelpText)
 				os.Exit(1)
 			} else {
-				log.Println("number of page: ", response.Result_Info.Total_pages)
 				result = append(result, response.Result...)
-				if response.Result_Info.Total_pages > 2 && response.Result_Info.Total_pages <= 10 {
-					for i := 2; i < response.Result_Info.Total_pages; i++ {
-						response := zone.GetAllZone(i, listCmdAccountId, listCmdAccountName)
-						if !response.Success {
+				bar.Add(1)
+				if response.Result_Info.Total_pages >= 2 {
+					for i := 2; i <= response.Result_Info.Total_pages; i++ {
+						bar.Add(1)
+						//fmt.Fprintln(os.Stdin, "Fetching cloudflare zone page", i, "/", response.Result_Info.Total_pages)
+						res := zone.GetAllZone(i, listCmdAccountId, listCmdAccountName)
+						if !res.Success {
 							fmt.Fprintln(os.Stderr, "Error: failed to list Cloudflare zones. The error is", response.Errors[0].Message)
 							fmt.Fprintln(os.Stderr, text.SubCmdHelpText)
 							os.Exit(1)
 						} else {
-							result = append(result, response.Result...)
+							result = append(result, res.Result...)
 						}
 					}
 				}
@@ -64,10 +67,6 @@ var listCmd = &cobra.Command{
 					flagQuery = "[].{id:id, name:name, status:status, account:{id: account.id, name: account.name}}"
 				}
 				output.PrintOut(result, flagQuery, flagOutput)
-				if response.Result_Info.Total_pages > 10 {
-					fmt.Fprintf(os.Stdin, fmt.Sprintf("Too many result returned, displaying %d/%d (page %d/%d)", response.Result_Info.Count, response.Result_Info.Total_count, response.Result_Info.Page, response.Result_Info.Total_pages))
-					fmt.Fprintf(os.Stdin, fmt.Sprintln())
-				}
 			}
 		}
 	},
