@@ -12,11 +12,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// zoneCmd represents the zone command
-var zoneCmd = &cobra.Command{
-	Use:   "zone",
-	Short: "manage Cloudflare zones",
-	Long:  text.ZoneCmdLongText + text.SubCmdHelpText,
+// accountCmd represents the account command
+var accountCmd = &cobra.Command{
+	Use:   "account",
+	Short: "manage Cloudflare accounts/organization",
+	Long:  text.AccountCmdLongText + text.SubCmdHelpText,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) <= 0 {
 			fmt.Fprintln(os.Stderr, text.EmptyArgsText+text.SubCmdHelpText)
@@ -26,5 +26,5 @@ var zoneCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(zoneCmd)
+	rootCmd.AddCommand(accountCmd)
 }

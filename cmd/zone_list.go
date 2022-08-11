@@ -29,8 +29,8 @@ func PrettyString(str string) (string, error) {
 var listCmdAccountId = ""
 var listCmdAccountName = ""
 
-// listCmd represents the list command
-var listCmd = &cobra.Command{
+// zoneListCmd represents the list command
+var zoneListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "list all Cloudflare zones",
 	Long:  text.ZoneListCmdLongText + text.SubCmdHelpText,
@@ -73,8 +73,8 @@ var listCmd = &cobra.Command{
 }
 
 func init() {
-	zoneCmd.AddCommand(listCmd)
-	listCmd.Flags().StringVarP(&listCmdAccountId, "account-id", "", "", "cloudflare account id (organization id)")
-	listCmd.Flags().StringVarP(&listCmdAccountName, "account-name", "n", "", "specify zone name to search")
+	zoneCmd.AddCommand(zoneListCmd)
+	zoneListCmd.Flags().StringVarP(&listCmdAccountId, "account-id", "", "", "cloudflare account id (organization id)")
+	zoneListCmd.Flags().StringVarP(&listCmdAccountName, "account-name", "n", "", "specify zone name to search")
 
 }

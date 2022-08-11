@@ -87,3 +87,9 @@ This command requires 'Zone.Read' & 'Zone.Write' on your Cloudflare token API co
 var DeleteZoneLongText = `Delete a Cloudflare zone.
 Zone should be changed to Free Website type before removed from Cloudflare.
 This command requires 'Zone.Read' & 'Zone.Write' on your Cloudflare token API configuration permission`
+
+var AccountCmdLongText = `Manage Cloudflare accounts/organizations
+This command requires 'organization:read,organization:write' on your Cloudflare token API configuration permission`
+
+var AccountListLongText = `List all Cloudflare accounts/organizations
+This command requires 'organization:read' on your Cloudflare token API configuration permission`

@@ -58,9 +58,11 @@ jobs:
           build=${{ github.run_number }}
           releaseDate=`date -u +%d-%m-%Y`
           releaseTime=`date -u +%H:%M:%S`
-          commitSHA=$(git log --pretty=format:"%H" HEAD^...HEAD)
+          commitSHA=$(echo $(git log --pretty=format:"%H" HEAD^...HEAD) | awk '{print $1}')
           
-          version=$(go run -ldflags "-X cloudflare/cmd.commit=$commitSHA  -X cloudflare/cmd.build=$build -X 'cloudflare/cmd.releaseDate=$releaseDate $releaseTime'" main.go version -s)
+          echo "-X cloudflare/cmd.commit=$commitSHA  -X cloudflare/cmd.build=$build -X cloudflare/cmd.releaseDate=${releaseDate}_${releaseTime}"
+
+          version=$(go run -ldflags "-X cloudflare/cmd.commit=$commitSHA  -X cloudflare/cmd.build=$build -X cloudflare/cmd.releaseDate=${releaseDate}_${releaseTime}" main.go version -s)
           echo "::notice title=Version :: ${version}"
           
           currentTag=$version
@@ -72,7 +74,7 @@ jobs:
           echo $releaseText >> body.txt
           echo "SHA: $commitSHA" >> body.txt
 
-          GOOS=linux GOARCH=amd64 go build -ldflags "-X cloudflare/cmd.commit=$commitSHA -X cloudflare/cmd.build=$build -X 'cloudflare/cmd.releaseDate=$releaseDate $releaseTime'" \
+          GOOS=linux GOARCH=amd64 go build -ldflags "-X cloudflare/cmd.commit=$commitSHA -X cloudflare/cmd.build=$build -X cloudflare/cmd.releaseDate=${releaseDate}_${releaseTime}" \
                                                       -o "release/linux-amd64-$version/cloudflare" cloudflare
           cd release/linux-amd64-$version
           ./cloudflare version
@@ -80,14 +82,14 @@ jobs:
           cd ..
           cd ..
 
-          GOOS=darwin GOARCH=arm64 go build -ldflags "-X cloudflare/cmd.commit=$commitSHA -X cloudflare/cmd.build=$build -X 'cloudflare/cmd.releaseDate=$releaseDate $releaseTime'" \
+          GOOS=darwin GOARCH=arm64 go build -ldflags "-X cloudflare/cmd.commit=$commitSHA -X cloudflare/cmd.build=$build -X cloudflare/cmd.releaseDate=${releaseDate}_${releaseTime}" \
                                                       -o "release/darwin-arm64-$version/cloudflare" cloudflare
           cd release/darwin-arm64-$version
           tar -czvf darwin-arm64-$version.tar.gz cloudflare
           cd ..
           cd ..
 
-          GOOS=windows GOARCH=amd64 go build -ldflags "-X cloudflare/cmd.commit=$commitSHA -X cloudflare/cmd.build=$build -X 'cloudflare/cmd.releaseDate=$releaseDate $releaseTime'" \
+          GOOS=windows GOARCH=amd64 go build -ldflags "-X cloudflare/cmd.commit=$commitSHA -X cloudflare/cmd.build=$build -X cloudflare/cmd.releaseDate=${releaseDate}_${releaseTime}" \
                                                       -o "release/windows-amd64-$version/cloudflare" cloudflare
           cd release/windows-amd64-$version
           tar -czvf windows-amd64-$version.zip cloudflare
