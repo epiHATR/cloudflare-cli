@@ -56,7 +56,9 @@ extract windows-amd64-v0.x.x.zip to a folder
 |--------------------------------------|-----------------------------------------------------|
 | [cloudflare](#cmd_cloudflare)                         | show cli introductions & starter command            |
 | [cloudflare version](#cmd_cloudflare_version)                 | display cli version and Cloudflare API version      |
-| [cloudflare login](#cmd_cloudflare_login)               | login into Cloudflare API                           |
+| [cloudflare login](#cmd_cloudflare_login)               | login into Cloudflare API 
+| [cloudflare account](#cmd_cloudflare_account)               |  manage Cloudflare accounts/organization |
+| [cloudflare account list](#cmd_cloudflare_account_list)               |  list all Cloudflare accounts/organization |
 | [cloudflare zone list](#cmd_cloudflare_zone_list) | list Cloudflare zone in account |
 | [cloudflare zone show](#cmd_cloudflare_zone_show) | show Cloudflare zone common information |
 | [cloudflare zone create](#cmd_cloudflare_zone_create) | create new Cloudflare zone |
@@ -92,6 +94,30 @@ cloudflare login [ --token | -t ]
 #global flags                                   
                  [ --help | -h ]
                  [ --debug ]
+```
+
+#### cloudflare account <a name="cmd_cloudflare_account"></a>
+Manage Cloudlare managed accounts/organization
+
+```bash
+cloudflare account
+
+#global flags                                   
+                 [ --help | -h ]
+                 [ --debug ]
+```
+
+#### cloudflare account list <a name="cmd_cloudflare_account_list"></a>
+List all Cloudlare managed accounts/organization
+
+```bash
+cloudflare account list [ --name | -n ]
+
+#global flags               
+                        [ --query | -q ]                           
+                        [ --output |-o ]                    
+                        [ --help | -h ]
+                        [ --debug ]
 ```
 
 #### cloudflare version<a name="cmd_cloudflare_version"></a>

@@ -71,7 +71,7 @@ var createCmd = &cobra.Command{
 
 func init() {
 	zoneCmd.AddCommand(createCmd)
-	//createCmd.Flags().SortFlags = false
+	createCmd.Flags().SortFlags = false
 	createCmd.Flags().StringVarP(&createCmdZoneName, "name", "n", "", "Name of the zone need to be created.")
 	createCmd.Flags().StringVarP(&createCmdAccountId, "account-id", "", "", "Id of Cloudflare Organization/Account which zone is being created in.")
 	createCmd.Flags().StringVarP(&createCmdZoneType, "type", "t", "partial", "Type of zone, must be one of 'partial, full'")

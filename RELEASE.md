@@ -9,6 +9,15 @@ Cloudflare API v0.1.45
 - [x] cloudflare version
 - [x] cloudflare login
 
+- [x] cloudflare account
+- [x] cloudflare account list
+- [ ] cloudflare account show
+
+- [ ] cloudflare account member list
+- [ ] cloudflare account member show
+- [ ] cloudflare account member invite
+- [ ] cloudflare account member delete
+
 - [x] cloudflare zone create
 - [x] cloudflare zone list
 - [x] cloudflare zone show

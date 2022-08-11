@@ -23,6 +23,8 @@ var (
 )
 
 var isDebug bool = false
+var flagOutput = "json"
+var flagQuery = ""
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -42,6 +44,8 @@ var rootCmd = &cobra.Command{
 func Execute() {
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
 	rootCmd.DisableSuggestions = false
+	rootCmd.PersistentFlags().SortFlags = false
+
 	rootCmd.SetHelpCommand(&cobra.Command{
 		Use:    "no-help",
 		Hidden: true,
@@ -55,8 +59,10 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
+	rootCmd.PersistentFlags().StringVarP(&flagQuery, "query", "q", "", "query in result using JMESpath query")
+	rootCmd.PersistentFlags().StringVarP(&flagOutput, "output", "o", "", "show output format in json, yaml, table, ...")
 	rootCmd.PersistentFlags().BoolVarP(&isDebug, "debug", "", false, "show debugging information in output windows")
-	rootCmd.PersistentFlags().BoolP("help", "h", false, "show command help for instructions and examples")
+	rootCmd.PersistentFlags().BoolP("help", "", false, "show command help for instructions and examples")
 }
 
 // initConfig reads in config file and ENV variables if set.

@@ -18,3 +18,4 @@ var ZoneDetails = "/zones/%s/dns_records"
 // organization endpoints
 var AvailablePlanEndpoint = "/zones/%s/available_plans"
 var AvailableRatePlanEndpoint = "/zones/%s/available_rate_plans"
+var AccountListEndPoint = "/accounts?per_page=50&direction=desc"
