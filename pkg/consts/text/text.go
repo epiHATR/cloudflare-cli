@@ -93,3 +93,6 @@ This command requires 'organization:read,organization:write' on your Cloudflare 
 
 var AccountListLongText = `List all Cloudflare accounts/organizations
 This command requires 'organization:read' on your Cloudflare token API configuration permission`
+
+var AccountShowLongText = `Show details of a Cloudflare account/organization
+This command requires 'organization:read' on your Cloudflare token API configuration permission`

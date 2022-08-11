@@ -18,7 +18,7 @@ import (
 var zoneShowCmdZoneName = ""
 var zoneShowCmdZoneId = ""
 
-var showCmd = &cobra.Command{
+var zoneShowCmd = &cobra.Command{
 	Use:   "show",
 	Short: "show a cloudflare zone details",
 	Long:  text.ZoneShowCmdLongText + text.SubCmdHelpText,
@@ -55,7 +55,7 @@ var showCmd = &cobra.Command{
 }
 
 func init() {
-	zoneCmd.AddCommand(showCmd)
-	showCmd.Flags().StringVarP(&zoneShowCmdZoneName, "name", "n", "", "name of Cloudflare zone")
-	showCmd.Flags().StringVarP(&zoneShowCmdZoneId, "id", "i", "", "id of Cloudflare zone")
+	zoneCmd.AddCommand(zoneShowCmd)
+	zoneShowCmd.Flags().StringVarP(&zoneShowCmdZoneName, "name", "n", "", "name of Cloudflare zone")
+	zoneShowCmd.Flags().StringVarP(&zoneShowCmdZoneId, "id", "i", "", "id of Cloudflare zone")
 }
