@@ -26,13 +26,13 @@
 Download latest binary from github at 
 
 ### Downloads <a name="downloads"></a>
-Cloudflare CLI has been released, version v0.1.4x is now available for download at [Release v0.1.4x](https://github.com/epiHATR/cloudflare-cli/releases)
+Download the latest release at [Cloudflare CLI release](https://github.com/epiHATR/cloudflare-cli/releases)
 
 Download one of following release zip file:
 ```bash
-https://github.com/epiHATR/cloudflare-cli/releases/download/v0.1.43/darwin-arm64-v0.x.x.tar.gz
-https://github.com/epiHATR/cloudflare-cli/releases/download/v0.1.43/linux-amd64-v0.x.x.tar.gz 
-https://github.com/epiHATR/cloudflare-cli/releases/download/v0.1.43/windows-amd64-v0.x.x.zip
+https://github.com/epiHATR/cloudflare-cli/releases/download/v0.x.x/darwin-arm64-v0.x.x.tar.gz
+https://github.com/epiHATR/cloudflare-cli/releases/download/v0.x.x/linux-amd64-v0.x.x.tar.gz 
+https://github.com/epiHATR/cloudflare-cli/releases/download/v0.x.x/windows-amd64-v0.x.x.zip
 ```
 ### Installation
 ##### ubuntu/rhel
@@ -358,20 +358,29 @@ cloudflare zone zone plan upgrade [ --zone-id ]
 ## Development <a name="developments"></a>
 
 ### Setup development environment <a name="setupenvironment"></a>
+- Install Go 1.18.5
+- Install Cobra for GO
+- Install Viper
 
 ### Add sub commands <a name="addsubcommands"></a>
+On the root folder (cloudflare-cli), type following command to generate new command
 
-### Incoming features <a name="incommingfeatures"></a>
-- [x] add --output|-o flag to allow output as json, yaml
-- [x] enable --query|-q flag to allow JMESpath based queries
-- [x] enable login with email & key
+```bash
+$> cobra add <command name> -p <parent command name> -a <author information>
+```
+### Run command locally
+On the local environment, run following command to start cli
+
+```bash
+$> go run main.go <sub command> --help
+```
 
 ### Build <a name="build"></a>
 
 Following command running on MACOS M1 which will create a release version of cloudflare-cli, targeting for:
 __Windows exe__
 ```
-version="v0.1.x"
+version="v0.x.x"
 GOOS=windows GOARCH=amd64 go build -ldflags "-X cloudflare/cmd.version=$version" -o "release/windows-amd64-$version/cloudflare.exe" cloudflare
 cd release/windows-amd64-$version
 ./cloudflare version -s
