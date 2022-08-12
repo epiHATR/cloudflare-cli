@@ -105,3 +105,6 @@ This command requires 'organization:read', 'organization:write' on your Cloudfla
 
 var AccountUserDetailsLongText = `Show user's information details
 This command requires 'organization:read', 'organization:write' on your Cloudflare token API configuration permission`
+
+var AccountRoleLongText = `Manage Cloudflare account/organization roles
+This command requires 'organization:read', 'organization:write' on your Cloudflare token API configuration permission`
