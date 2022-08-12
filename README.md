@@ -71,6 +71,7 @@ extract windows-amd64-v0.x.x.zip to a folder
 | [cloudflare account user add](#cmd_cloudflare_account_user_add)      |  add new user to a Cloudflare account/organization |
 | [cloudflare account user list](#cmd_cloudflare_account_user_list)      |  manage users in a Cloudflare account/organization |
 | [cloudflare account user show](#cmd_cloudflare_account_user_show)      |  show information details of a user in a Cloudflare account/organization |
+| [cloudflare account user delete](#cmd_cloudflare_account_user_delete)      |  remove an user from a Cloudflare account/organization |
 | | |
 | [cloudflare zone list](#cmd_cloudflare_zone_list) | list Cloudflare zone in account |
 | [cloudflare zone show](#cmd_cloudflare_zone_show) | show Cloudflare zone common information |
@@ -168,10 +169,10 @@ cloudflare account update [ --account-id ]
                           [ --data | -d ]
 
 #global flags               
-                        [ --query | -q ]                           
-                        [ --output |-o ]                    
-                        [ --help | -h ]
-                        [ --debug ]
+                          [ --query | -q ]                           
+                          [ --output |-o ]                    
+                          [ --help | -h ]
+                          [ --debug ]
 ```
 
 #### cloudflare account role <a name="cmd_cloudflare_account_role"></a>
@@ -250,10 +251,10 @@ cloudflare account user add [ --account-id ]
                             [ --role-id '--role-id=role1 --role-id=role2' ]
 
 #global flags               
-                             [ --query | -q ]                           
-                             [ --output |-o ]                    
-                             [ --help | -h ]
-                             [ --debug ]
+                            [ --query | -q ]                           
+                            [ --output |-o ]                    
+                            [ --help | -h ]
+                            [ --debug ]
 ```
 
 #### cloudflare account user show<a name="cmd_cloudflare_account_user_show"></a>
@@ -268,6 +269,21 @@ cloudflare account user show [ --account-id ]
                              [ --output |-o ]                    
                              [ --help | -h ]
                              [ --debug ]
+```
+
+#### cloudflare account user delete<a name="cmd_cloudflare_account_user_delete"></a>
+Show information details of a user in a Cloudlare managed accounts/organization
+
+```bash
+cloudflare account user delete [ --account-id ]
+                               [ --user-id ]
+                               [ --force]
+
+#global flags               
+                               [ --query | -q ]                           
+                               [ --output |-o ]                    
+                               [ --help | -h ]
+                               [ --debug ]
 ```
 
 #### cloudflare zone list<a name="cmd_cloudflare_zone_list"></a>
@@ -333,10 +349,10 @@ cloudflare zone dns list [ --zone-id | -i]
                          [ --type | -t ]
 
 #global flags       
-                        [ --query | -q ]                           
-                        [ --output |-o ]
-                        [ --help | -h ]
-                        [ --debug ]
+                         [ --query | -q ]                           
+                         [ --output |-o ]
+                         [ --help | -h ]
+                         [ --debug ]
 ```
 
 #### cloudflare zone dns show <a name="cmd_cloudflare_zone_dns_show"></a>
@@ -472,10 +488,10 @@ cloudflare zone zone plan upgrade [ --zone-id ]
                                   [ --plan-id | -i]
                                   [ --plan-name | -n]
 #global flags       
-                                [ --query | -q ]                           
-                                [ --output |-o ]
-                                [ --help | -h ]
-                                [ --debug ]
+                                  [ --query | -q ]                           
+                                  [ --output |-o ]
+                                  [ --help | -h ]
+                                  [ --debug ]
 ```
 
 ## Development <a name="developments"></a>

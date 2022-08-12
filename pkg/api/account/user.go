@@ -12,7 +12,7 @@ import (
 )
 
 func GetAccountUsers(accountId string) response.AccountUsersResponse {
-	log.Println("get all user in Cloudflare managed accounts/organizations")
+	log.Println("get all users in Cloudflare managed accounts/organizations")
 	queryUrl := fmt.Sprintf(endpoint.ApiEndPoint+endpoint.AccountUsersEndpoint, accountId)
 
 	respData := request.CreateRequest(queryUrl, "GET", "")
@@ -27,7 +27,7 @@ func GetAccountUsers(accountId string) response.AccountUsersResponse {
 }
 
 func GetAccountUserDetail(accountId string, userId string) response.AccountUserDetailResponse {
-	log.Println("get details of an users in a Cloudflare managed accounts/organizations")
+	log.Println("get details of an user in a Cloudflare managed accounts/organizations")
 	queryUrl := fmt.Sprintf(endpoint.ApiEndPoint+endpoint.AccountUsersEndpoint+"/"+userId, accountId)
 
 	respData := request.CreateRequest(queryUrl, "GET", "")
@@ -42,7 +42,7 @@ func GetAccountUserDetail(accountId string, userId string) response.AccountUserD
 }
 
 func AccountAddUser(accountId string, email string, status string, roles []string) response.AccountUserDetailResponse {
-	log.Println("get details of an users in a Cloudflare managed accounts/organizations")
+	log.Println("get details of an user in a Cloudflare managed accounts/organizations")
 	queryUrl := fmt.Sprintf(endpoint.ApiEndPoint+endpoint.AccountUsersEndpoint, accountId)
 
 	reqBody := payload.UserAddRequest{}
@@ -54,6 +54,21 @@ func AccountAddUser(accountId string, email string, status string, roles []strin
 	log.Println(string(jsonPayload))
 
 	respData := request.CreateRequest(queryUrl, "POST", string(jsonPayload))
+	resObj := response.AccountUserDetailResponse{}
+
+	err := json.Unmarshal(respData, &resObj)
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+	return resObj
+}
+
+func AccountDeleteUser(accountId string, userId string) response.AccountUserDetailResponse {
+	log.Println("removing an user in a Cloudflare managed accounts/organizations")
+	queryUrl := fmt.Sprintf(endpoint.ApiEndPoint+endpoint.AccountUsersEndpoint+"/"+userId, accountId)
+
+	respData := request.CreateRequest(queryUrl, "DELETE", "")
 	resObj := response.AccountUserDetailResponse{}
 
 	err := json.Unmarshal(respData, &resObj)

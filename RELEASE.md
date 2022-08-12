@@ -18,7 +18,7 @@ Cloudflare API v0.1.45
 - [x] cloudflare account user list
 - [x] cloudflare account user add
 - [x] cloudflare account user show
-- [ ] cloudflare account user delete
+- [x] cloudflare account user delete
 
 - [x] cloudflare account role
 - [x] cloudflare account role list

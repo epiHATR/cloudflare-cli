@@ -48,7 +48,7 @@ const ZoneDNSListCmdLongText = `Get all DNS records in a specified Cloudflare zo
 This command requires 'Zone.Read' & 'DNS.Read' on your Cloudlfare token API configuration permission`
 
 var ZoneDnsLongText = `Manage your DNS records in the Cloudflare zone
-This command requires 'DNS.Read' & 'DNS.Create' on your Cloudflare token API configuration permission`
+This command requires 'zone.dns.read & 'zone.dns.write' on your Cloudflare token API configuration permission`
 
 var ZoneDnsShowLongText = `Show Cloudflare DNS record details
 This command requires 'DNS.Read' & 'DNS.Create' on your Cloudflare token API configuration permission`
@@ -76,17 +76,17 @@ var UpdatePlanLongtext = `Update Cloudflare zone's plan
 This command requires 'Billing.Write' on your Cloudflare token API configuration permission`
 
 var ZoneDndDelete = `Delete a DNS record from Cloudflare zone
-This command requires 'DNS.Read' & 'DNS.Write' on your Cloudflare token API configuration permission`
+This command requires 'zone.dns.read & 'zone.dns.write' on your Cloudflare token API configuration permission`
 
 var ZoneDnsUpdate = `Update a DNS record on Cloudflare zone
-This command requires 'DNS.Write' & 'DNS.Write' on your Cloudflare token API configuration permission`
+This command requires 'zone.dns.read & 'zone.dns.write' on your Cloudflare token API configuration permission`
 
 var ZoneCreateLongText = `Create a new Cloudflare zone
-This command requires 'Zone.Read' & 'Zone.Write' on your Cloudflare token API configuration permission`
+This command requires 'zone.settings.read & 'zone.settings.write' on your Cloudflare token API configuration permission`
 
 var DeleteZoneLongText = `Delete a Cloudflare zone.
 Zone should be changed to Free Website type before removed from Cloudflare.
-This command requires 'Zone.Read' & 'Zone.Write' on your Cloudflare token API configuration permission`
+This command requires 'zone.settings.read & 'zone.settings.write' on your Cloudflare token API configuration permission`
 
 var AccountCmdLongText = `Manage Cloudflare accounts/organizations
 This command requires 'organization:read,organization:write' on your Cloudflare token API configuration permission`
