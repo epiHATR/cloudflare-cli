@@ -68,6 +68,7 @@ extract windows-amd64-v0.x.x.zip to a folder
 | [cloudflare account role show](#cmd_cloudflare_account_role_show)      |  show information details of a role in cloudflare account/organization |
 | | |
 | [cloudflare account user](#cmd_cloudflare_account_user)      |  manage users in a Cloudflare account/organization |
+| [cloudflare account user add](#cmd_cloudflare_account_user_add)      |  add new user to a Cloudflare account/organization |
 | [cloudflare account user list](#cmd_cloudflare_account_user_list)      |  manage users in a Cloudflare account/organization |
 | [cloudflare account user show](#cmd_cloudflare_account_user_show)      |  show information details of a user in a Cloudflare account/organization |
 | | |
@@ -231,6 +232,22 @@ List all users in a Cloudlare managed accounts/organization
 
 ```bash
 cloudflare account user list [ --account-id ]
+
+#global flags               
+                             [ --query | -q ]                           
+                             [ --output |-o ]                    
+                             [ --help | -h ]
+                             [ --debug ]
+```
+
+#### cloudflare account user add<a name="cmd_cloudflare_account_user_add"></a>
+Add new user to a Cloudlare managed accounts/organization
+
+```bash
+cloudflare account user add [ --account-id ]
+                            [ --email ]
+                            [ --status 'accepted', 'pending' ]
+                            [ --role-id '--role-id=role1 --role-id=role2' ]
 
 #global flags               
                              [ --query | -q ]                           
