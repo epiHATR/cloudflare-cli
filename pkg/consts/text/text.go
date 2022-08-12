@@ -99,3 +99,6 @@ This command requires 'organization:read' on your Cloudflare token API configura
 
 var AccountUpdateLongText = `Update information of a Cloudflare account/organization
 This command requires 'organization:write' on your Cloudflare token API configuration permission`
+
+var AccountUserLongText = `Manage users of a Cloudflare account/organization
+This command requires 'organization:read', 'organization:write' on your Cloudflare token API configuration permission`

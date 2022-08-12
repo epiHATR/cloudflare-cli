@@ -15,8 +15,9 @@ var ZoneSettingEndPoint = "/zones"
 var ZoneDnsListEndpoint = "/zones/%s/dns_records?order=type&direction=desc&match=all"
 var ZoneDetails = "/zones/%s/dns_records"
 
-// organization endpoints
+// organization/account endpoints
 var AvailablePlanEndpoint = "/zones/%s/available_plans"
 var AvailableRatePlanEndpoint = "/zones/%s/available_rate_plans"
 var AccountListEndPoint = "/accounts?per_page=50&direction=desc"
 var AccountDetailsEndpoint = "/accounts/%s"
+var AccountUsersEndpoint = "/accounts/%s/members"
