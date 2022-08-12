@@ -58,8 +58,8 @@ type AccountListResponse struct {
 	Success     bool             `json:"success"`
 	Messages    []message        `json:"messages"`
 	Errors      []error          `json:"errors"`
-	Result      []AccountDetails `json:"result"`
 	Result_Info result_Info      `json:"result_info"`
+	Result      []AccountDetails `json:"result"`
 }
 
 type AccountDetailsResponse struct {
@@ -70,8 +70,16 @@ type AccountDetailsResponse struct {
 }
 
 type AccountUsersResponse struct {
-	Success  bool          `json:"success"`
-	Messages []message     `json:"messages"`
-	Errors   []error       `json:"errors"`
-	Result   []UserDetails `json:"result"`
+	Success     bool          `json:"success"`
+	Messages    []message     `json:"messages"`
+	Errors      []error       `json:"errors"`
+	Result      []UserDetails `json:"result"`
+	Result_Info result_Info   `json:"result_info"`
+}
+
+type AccountUserDetailResponse struct {
+	Success  bool        `json:"success"`
+	Messages []message   `json:"messages"`
+	Errors   []error     `json:"errors"`
+	Result   UserDetails `json:"result"`
 }
