@@ -21,7 +21,7 @@ var accountRoleListAccountId string = ""
 var accountRoleListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "list all available role in Cloudflare account/organization",
-	Long:  text.SubCmdHelpText,
+	Long:  text.AccountRoleListLongText + text.SubCmdHelpText,
 	Run: func(cmd *cobra.Command, args []string) {
 		errText := []string{}
 		if accountRoleListAccountId == "" {
