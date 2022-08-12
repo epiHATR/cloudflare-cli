@@ -57,27 +57,37 @@ extract windows-amd64-v0.x.x.zip to a folder
 | [cloudflare](#cmd_cloudflare)                         | show cli introductions & starter command            |
 | [cloudflare version](#cmd_cloudflare_version)                 | display cli version and Cloudflare API version      |
 | [cloudflare login](#cmd_cloudflare_login)               | login into Cloudflare API 
+| | |
 | [cloudflare account](#cmd_cloudflare_account)               |  manage Cloudflare accounts/organization |
 | [cloudflare account list](#cmd_cloudflare_account_list)               |  list all Cloudflare accounts/organization |
 | [cloudflare account show](#cmd_cloudflare_account_show)               |  show details of a cloudflare account/organization |
 | [cloudflare account update](#cmd_cloudflare_account_update)      |  update information of a cloudflare account/organization |
+| | |
+| [cloudflare account role](#cmd_cloudflare_account_role)      |  manage all roles in cloudflare account/organization |
+| [cloudflare account role list](#cmd_cloudflare_account_role_list)      |  list all roles in cloudflare account/organization |
+| [cloudflare account role show](#cmd_cloudflare_account_role_show)      |  show information details of a role in cloudflare account/organization |
+| | |
 | [cloudflare account user](#cmd_cloudflare_account_user)      |  manage users in a Cloudflare account/organization |
 | [cloudflare account user list](#cmd_cloudflare_account_user_list)      |  manage users in a Cloudflare account/organization |
 | [cloudflare account user show](#cmd_cloudflare_account_user_show)      |  show information details of a user in a Cloudflare account/organization |
+| | |
 | [cloudflare zone list](#cmd_cloudflare_zone_list) | list Cloudflare zone in account |
 | [cloudflare zone show](#cmd_cloudflare_zone_show) | show Cloudflare zone common information |
 | [cloudflare zone create](#cmd_cloudflare_zone_create) | create new Cloudflare zone |
 | [cloudflare zone delete](#cmd_cloudflare_zone_delete) | delete a Cloudflare zone |
+| | |
 | [cloudflare zone setting pause](#cmd_cloudflare_zone_setting_pause) | pause a cloudflare zone |
 | [cloudflare zone setting unpause](#cmd_cloudflare_zone_setting_unpause) | unpause a cloudflare zone |
-| [cloudflare zone settings set-type](#cmd_cloudflare_zone_setting_set-type) | set Cloudflare zone type (parital, full, delegated)|
+| [cloudflare zone setting set-type](#cmd_cloudflare_zone_setting_set-type) | set Cloudflare zone type (parital, full, delegated)|
+| | |
 | [cloudflare zone plan list](#cmd_cloudflare_zone_plan_list) | list all Cloudflare plan for zone|
 | [cloudflare zone plan show](#cmd_cloudflare_zone_plan_show) | show a Cloudflare plan details|
 | [cloudflare zone plan upgrade](#cmd_cloudflare_zone_plan_upgrade) | upgrade Cloudflare zone to a specified plan |
+| | |
 | [cloudflare zone dns list](#cmd_cloudflare_zone_dns_list) | list DNS records on a Cloudflare zone  |
 | [cloudflare zone dns add](#cmd_cloudflare_zone_dns_add) | add a DNS records on a Cloudflare zone |
-| [cloudflare zone dns update](#cmd_cloudflare_zone_dns_update) | change/update DNS records value on Cloudflare zone |
 | [cloudflare zone dns show](#cmd_cloudflare_zone_dns_show) | show a DNS records details of a Cloudflare zone |
+| [cloudflare zone dns update](#cmd_cloudflare_zone_dns_update) | change/update DNS records value on Cloudflare zone |
 | [cloudflare zone dns delete](#cmd_cloudflare_zone_dns_delete)| delete a DNS records on a Cloudflare zone |
 
 #### cloudflare <a name="cmd_cloudflare"></a>
@@ -163,6 +173,46 @@ cloudflare account update [ --account-id ]
                         [ --debug ]
 ```
 
+#### cloudflare account role <a name="cmd_cloudflare_account_role"></a>
+Manage roles in a Cloudlare managed accounts/organization
+
+```bash
+cloudflare account role
+
+#global flags               
+                        [ --query | -q ]                           
+                        [ --output |-o ]                    
+                        [ --help | -h ]
+                        [ --debug ]
+```
+
+#### cloudflare account role list<a name="cmd_cloudflare_account_role_list"></a>
+List al roles in a Cloudlare managed accounts/organization
+
+```bash
+cloudflare account role list [ --account-id ]
+
+#global flags               
+                             [ --query | -q ]                           
+                             [ --output |-o ]                    
+                             [ --help | -h ]
+                             [ --debug ]
+```
+
+#### cloudflare account role show<a name="cmd_cloudflare_account_role_show"></a>
+Show information details of a role in a Cloudlare managed accounts/organization
+
+```bash
+cloudflare account role show [ --account-id ]
+                             [ --role-id ]
+
+#global flags               
+                             [ --query | -q ]                           
+                             [ --output |-o ]                    
+                             [ --help | -h ]
+                             [ --debug ]
+```
+
 #### cloudflare account user <a name="cmd_cloudflare_account_user"></a>
 Manage users in a Cloudlare managed accounts/organization
 
@@ -177,7 +227,7 @@ cloudflare account user
 ```
 
 #### cloudflare account user list<a name="cmd_cloudflare_account_user_list"></a>
-Manage users in a Cloudlare managed accounts/organization
+List all users in a Cloudlare managed accounts/organization
 
 ```bash
 cloudflare account user list [ --account-id ]
