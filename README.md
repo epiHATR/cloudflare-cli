@@ -61,6 +61,9 @@ extract windows-amd64-v0.x.x.zip to a folder
 | [cloudflare account list](#cmd_cloudflare_account_list)               |  list all Cloudflare accounts/organization |
 | [cloudflare account show](#cmd_cloudflare_account_show)               |  show details of a cloudflare account/organization |
 | [cloudflare account update](#cmd_cloudflare_account_update)      |  update information of a cloudflare account/organization |
+| [cloudflare account user](#cmd_cloudflare_account_user)      |  manage users in a Cloudflare account/organization |
+| [cloudflare account user list](#cmd_cloudflare_account_user_list)      |  manage users in a Cloudflare account/organization |
+| [cloudflare account user show](#cmd_cloudflare_account_user_show)      |  show information details of a user in a Cloudflare account/organization |
 | [cloudflare zone list](#cmd_cloudflare_zone_list) | list Cloudflare zone in account |
 | [cloudflare zone show](#cmd_cloudflare_zone_show) | show Cloudflare zone common information |
 | [cloudflare zone create](#cmd_cloudflare_zone_create) | create new Cloudflare zone |
@@ -160,6 +163,46 @@ cloudflare account update [ --account-id ]
                         [ --debug ]
 ```
 
+#### cloudflare account user <a name="cmd_cloudflare_account_user"></a>
+Manage users in a Cloudlare managed accounts/organization
+
+```bash
+cloudflare account user
+
+#global flags               
+                        [ --query | -q ]                           
+                        [ --output |-o ]                    
+                        [ --help | -h ]
+                        [ --debug ]
+```
+
+#### cloudflare account user list<a name="cmd_cloudflare_account_user_list"></a>
+Manage users in a Cloudlare managed accounts/organization
+
+```bash
+cloudflare account user list [ --account-id ]
+
+#global flags               
+                             [ --query | -q ]                           
+                             [ --output |-o ]                    
+                             [ --help | -h ]
+                             [ --debug ]
+```
+
+#### cloudflare account user show<a name="cmd_cloudflare_account_user_show"></a>
+Show information details of a user in a Cloudlare managed accounts/organization
+
+```bash
+cloudflare account user show [ --account-id ]
+                             [ --user-id ]
+
+#global flags               
+                             [ --query | -q ]                           
+                             [ --output |-o ]                    
+                             [ --help | -h ]
+                             [ --debug ]
+```
+
 #### cloudflare zone list<a name="cmd_cloudflare_zone_list"></a>
 <p>List all Cloudflare zone under account</p>
 
@@ -168,10 +211,10 @@ cloudflare zone list [ --account-id ]
                      [ --account-name | -n ]
 
 #global flags       
-                    [ --query | -q ]                           
-                    [ --output |-o ]
-                    [ --help | -h ]
-                    [ --debug ]
+                     [ --query | -q ]                           
+                     [ --output |-o ]
+                     [ --help | -h ]
+                     [ --debug ]
 ```
 #### cloudflare zone create<a name="cmd_cloudflare_zone_create"></a>
 <p>Create a Cloudflare zone under account</p>

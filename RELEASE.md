@@ -14,10 +14,17 @@ Cloudflare API v0.1.45
 - [x] cloudflare account show
 - [x] cloudflare account update
 
-- [ ] cloudflare account member list
-- [ ] cloudflare account member show
-- [ ] cloudflare account member invite
+- [x] cloudflare account user
+- [x] cloudflare account user list
+- [x] cloudflare account user show
+- [ ] cloudflare account member add
 - [ ] cloudflare account member delete
+
+- [ ] cloudflare account role
+- [ ] cloudflare account role list
+- [ ] cloudflare account role show
+
+
 
 - [x] cloudflare zone create
 - [x] cloudflare zone list
