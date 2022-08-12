@@ -43,3 +43,18 @@ func GetAccountDetails(accountId string) response.AccountDetailsResponse {
 	}
 	return resObj
 }
+
+func UpdateAccount(accountId string, payloadData string) response.AccountDetailsResponse {
+	log.Println("get all Cloudflare managed accounts/organizations")
+	queryUrl := fmt.Sprintf(endpoint.ApiEndPoint+endpoint.AccountDetailsEndpoint, accountId)
+
+	respData := request.CreateRequest(queryUrl, "PUT", payloadData)
+	resObj := response.AccountDetailsResponse{}
+
+	err := json.Unmarshal(respData, &resObj)
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+	return resObj
+}

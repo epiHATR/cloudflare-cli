@@ -12,6 +12,7 @@ Cloudflare API v0.1.45
 - [x] cloudflare account
 - [x] cloudflare account list
 - [x] cloudflare account show
+- [x] cloudflare account update
 
 - [ ] cloudflare account member list
 - [ ] cloudflare account member show

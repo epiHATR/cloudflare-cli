@@ -60,6 +60,7 @@ extract windows-amd64-v0.x.x.zip to a folder
 | [cloudflare account](#cmd_cloudflare_account)               |  manage Cloudflare accounts/organization |
 | [cloudflare account list](#cmd_cloudflare_account_list)               |  list all Cloudflare accounts/organization |
 | [cloudflare account show](#cmd_cloudflare_account_show)               |  show details of a cloudflare account/organization |
+| [cloudflare account update](#cmd_cloudflare_account_update)      |  update information of a cloudflare account/organization |
 | [cloudflare zone list](#cmd_cloudflare_zone_list) | list Cloudflare zone in account |
 | [cloudflare zone show](#cmd_cloudflare_zone_show) | show Cloudflare zone common information |
 | [cloudflare zone create](#cmd_cloudflare_zone_create) | create new Cloudflare zone |
@@ -137,6 +138,20 @@ Show details of a Cloudlare managed account/organization
 
 ```bash
 cloudflare account show [ --account-id ]
+
+#global flags               
+                        [ --query | -q ]                           
+                        [ --output |-o ]                    
+                        [ --help | -h ]
+                        [ --debug ]
+```
+#### cloudflare account update <a name="cmd_cloudflare_account_update"></a>
+Update information details of a Cloudlare managed account/organization
+See payload data at https://api.cloudflare.com/#accounts-update-account
+
+```bash
+cloudflare account update [ --account-id ]
+                          [ --data | -d ]
 
 #global flags               
                         [ --query | -q ]                           
@@ -230,7 +245,6 @@ cloudflare zone dns show [ --id | -i ]
 
 #### cloudflare zone dns add <a name="cmd_cloudflare_zone_dns_add"></a>
 <p>Add a Cloudflare DNS record and return its result</p>
-
 See data payload format at [Cloudflare API documentation - create DNS record](https://api.cloudflare.com/#dns-records-for-a-zone-create-dns-record)
 
 ```bash
@@ -245,7 +259,6 @@ cloudflare zone dns add [ --zone-id ]
 
 #### cloudflare zone dns update <a name="cmd_cloudflare_zone_dns_update"></a>
 <p>Update a Cloudflare DNS record</p>
-
 See data payload format at [Cloudflare API documentation - create DNS record](https://api.cloudflare.com/#dns-records-for-a-zone-update-dns-record)
 
 ```bash
