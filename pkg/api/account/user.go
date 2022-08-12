@@ -11,7 +11,7 @@ import (
 )
 
 func GetAccountUsers(accountId string) response.AccountUsersResponse {
-	log.Println("get all Cloudflare managed accounts/organizations")
+	log.Println("get all user in Cloudflare managed accounts/organizations")
 	queryUrl := fmt.Sprintf(endpoint.ApiEndPoint+endpoint.AccountUsersEndpoint, accountId)
 
 	respData := request.CreateRequest(queryUrl, "GET", "")
@@ -26,7 +26,7 @@ func GetAccountUsers(accountId string) response.AccountUsersResponse {
 }
 
 func GetAccountUserDetail(accountId string, userId string) response.AccountUserDetailResponse {
-	log.Println("get all Cloudflare managed accounts/organizations")
+	log.Println("get details of an users in a Cloudflare managed accounts/organizations")
 	queryUrl := fmt.Sprintf(endpoint.ApiEndPoint+endpoint.AccountUsersEndpoint+"/"+userId, accountId)
 
 	respData := request.CreateRequest(queryUrl, "GET", "")
