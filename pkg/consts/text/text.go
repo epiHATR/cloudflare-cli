@@ -117,3 +117,6 @@ This command requires 'organization:read', 'organization:write' on your Cloudfla
 
 var AccountUserAddLongText = `Add new user to a Cloudflare account/organization
 This command requires 'organization:read', 'organization:write' on your Cloudflare token API configuration permission`
+
+var CacheCmdLongText = `Control cache behavior on Cloudflare zone
+This command requires 'cache_purge:purge' & 'cache_purge:read' on your Cloudflare token API configuration permission`
