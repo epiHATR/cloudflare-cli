@@ -82,6 +82,8 @@ extract windows-amd64-v0.x.x.zip to a folder
 | [cloudflare zone setting unpause](#cmd_cloudflare_zone_setting_unpause) | unpause a cloudflare zone |
 | [cloudflare zone setting set-type](#cmd_cloudflare_zone_setting_set-type) | set Cloudflare zone type (parital, full, delegated)|
 | | |
+| [cloudflare zone cache purge](#cmd_cloudflare_zone_cache_purge) | control cache behavior on Cloudflare zone |
+| | |
 | [cloudflare zone plan list](#cmd_cloudflare_zone_plan_list) | list all Cloudflare plan for zone|
 | [cloudflare zone plan show](#cmd_cloudflare_zone_plan_show) | show a Cloudflare plan details|
 | [cloudflare zone plan upgrade](#cmd_cloudflare_zone_plan_upgrade) | upgrade Cloudflare zone to a specified plan |
@@ -437,6 +439,20 @@ cloudflare zone setting unpause [ --zone-id]
                                 [ --output |-o ]
                                 [ --help | -h ]
                                 [ --debug ]
+```
+
+#### cloudflare zone cache purge<a name="cmd_cloudflare_zone_cache_purge"></a>
+<p>Control cache behaviors on Cloudflare zone</p>
+
+```bash
+cloudflare zone cache purge [ --zone-id]
+                            [ --purge-everything | -A]
+
+#global flags       
+                            [ --query | -q ]                           
+                            [ --output |-o ]
+                            [ --help | -h ]
+                            [ --debug ]
 ```
 
 #### cloudflare zone setting set-type<a name="cmd_cloudflare_zone_setting_set-type"></a>

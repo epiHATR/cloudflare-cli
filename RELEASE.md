@@ -46,7 +46,7 @@ Cloudflare API v0.1.45
 - [x] cloudflare zone plan show
 - [x] cloudflare zone plan upgrade
 
-- [ ] cloudflare zone cache purge
+- [x] cloudflare zone cache purge
 - [ ] cloudflare zone cache set-level
 - [ ] cloudllare zone cache set-cache-ttl
 
