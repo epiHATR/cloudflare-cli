@@ -557,3 +557,6 @@ cd release/darwin-arm64-$version
 ./cloudflare version -s
 tar -czvf darwin-arm64-$version.tar.gz cloudflare
 ```
+
+### Sponsors
+This repository is sponsored by [CloudCLI.io](www.cloudcli.io)
