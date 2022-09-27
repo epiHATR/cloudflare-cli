@@ -559,4 +559,4 @@ tar -czvf darwin-arm64-$version.tar.gz cloudflare
 ```
 
 ### Sponsors
-This repository is sponsored by [CloudCLI.io](www.cloudcli.io)
+This repository is sponsored by [CloudCLI.io](https://www.cloudcli.io)
