@@ -8,6 +8,8 @@
 ![issues](https://img.shields.io/github/issues/epiHATR/cloudflare-cli?color=%23CC0058)
 ![license](https://img.shields.io/github/license/epiHATR/cloudflare-cli?color=93BB29&logoColor=green)
 
+<a href="https://www.buymeacoffee.com/hidetran"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=hidetran&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+
 # Table of Contents
 1. [Introduction](#introductions)
 2. [Features](RELEASE.md)
@@ -559,4 +561,4 @@ tar -czvf darwin-arm64-$version.tar.gz cloudflare
 ```
 
 ### Sponsors
-This repository is sponsored by [CloudCLI.io](www.cloudcli.io)
+This repository is sponsored by [CloudCLI.io](https://www.cloudcli.io)
